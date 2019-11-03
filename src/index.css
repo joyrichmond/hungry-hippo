@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 body {
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#categoryLine {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  width: 50rem;
 }
