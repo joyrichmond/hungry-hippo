@@ -1,15 +1,19 @@
 import express from 'express';
-import { MongoClient } from 'mongodb';
+import { config } from 'dotenv';
+import { connect } from './services/mongoService';
 
-require('dotenv').config();
+config();
 
 const main = async () => {
-  const client = new MongoClient(process.env.DB_CONNECTION!, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  if (!process.env.DB_CONNECTION) {
+    throw new Error('No database connection');
+  }
 
-  await client.connect();
+  if (!process.env.DB_NAME) {
+    throw new Error('No database name');
+  }
+
+  await connect();
 
   const app = express();
 
