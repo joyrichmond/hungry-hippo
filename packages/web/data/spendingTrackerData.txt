@@ -1,5 +1,0 @@
-const budgetLineItems = {
-  category: '',
-  totalSpent: 0,
-  budgetedAmount: 0,
-}
