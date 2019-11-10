@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const AddButton = () => {
+type Props = {};
+
+const AddButton: FC<Props> = () => (
   <button className="iconButton">
     <FontAwesomeIcon icon={['fas', 'plus']} />
-  </button>;
-};
+  </button>
+);
 
 export default AddButton;
