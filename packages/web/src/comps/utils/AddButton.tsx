@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-type Props = {};
+type Props = {
+  handleClick: any;
+};
 
-const AddButton: FC<Props> = () => (
-  <button className="iconButton">
+const AddButton: FC<Props> = ({ handleClick }) => (
+  <button className="fill-button" onClick={handleClick}>
     <FontAwesomeIcon icon={['fas', 'plus']} />
   </button>
 );
