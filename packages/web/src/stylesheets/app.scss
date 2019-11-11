@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import './style-variables.scss';
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: $primary-font;
   font-size: 14px;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
+
+@import './global-classes.scss';
 
 #categoryLine {
   display: flex;

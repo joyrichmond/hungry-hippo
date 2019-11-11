@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import spendingTrackerReducer from './reducers/spendingTrackerReducer';
+import './stylesheets/app.scss';
 import './fontawesome';
 
 import Header from './comps/Header';

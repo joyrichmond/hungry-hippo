@@ -1,0 +1,56 @@
+@import './style-variables.scss';
+
+.flex-h {
+  display: flex;
+  align-items: center;
+}
+
+.flex-v {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-centered-v {
+  align-items: center;
+}
+
+.flex-centered-h {
+  justify-content: center;
+}
+
+.flex-space-between {
+  justify-content: space-between;
+}
+
+.input-container > input {
+  margin: 0.8rem;
+  padding: 0.5rem;
+  font-family: $primary-font;
+  font-size: 1.1rem;
+}
+
+.fill-button {
+  padding: 0 2rem;
+  background-color: $primary;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 5px;
+  box-shadow: 1px 1px $shadow;
+  color: white;
+  font-family: $primary-font;
+  height: 2.5rem;
+  border: outset 2px $hover;
+
+  &:hover {
+    background-color: $hover;
+  }
+
+  &:active {
+    border: inset 2px $hover;
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
