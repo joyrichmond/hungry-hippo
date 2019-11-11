@@ -8,6 +8,14 @@ body {
   flex-direction: column;
 }
 
+input {
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 @import './global-classes.scss';
 
 #categoryLine {
