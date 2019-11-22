@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import SpendingHistoryAccordion from './categoryLine/SpendingHistoryAccordion';
+import TransactionHistoryAccordion from './categoryLine/TransactionHistoryAccordion';
 
 type Props = {
   category: string;
@@ -19,23 +19,25 @@ const CategoryLine: FC<Props> = ({
   );
 
   const handleClick = () => {
-    setIsTransactionVisible(true);
+    setIsTransactionVisible(!isTransactionHistoryVisible);
   };
 
   return (
-    <div className="categoryLine">
-      <span className="categoryName">{category}</span>
-      <input type="text" />
-      <div className="budgetInfo">
-        <span>totalSpent</span>
-        <span>of</span>
-        <span>{budgetedAmount}</span>
+    <div className="flex-v flex-centered-v">
+      <div className="categoryLine">
+        <span className="categoryName">{category}</span>
+        <input type="text" />
+        <div className="budgetInfo">
+          <span>totalSpent</span>
+          <span>of</span>
+          <span>{budgetedAmount}</span>
+        </div>
+        <button type="button" onClick={handleClick}>
+          <FontAwesomeIcon icon="chevron-down" />
+        </button>
       </div>
-      <button type="button" onClick={handleClick}>
-        <FontAwesomeIcon icon="chevron-down" />
-      </button>
       {isTransactionHistoryVisible && (
-        <SpendingHistoryAccordion transactionHistory={transactionHistory} />
+        <TransactionHistoryAccordion transactionHistory={transactionHistory} />
       )}
     </div>
   );
