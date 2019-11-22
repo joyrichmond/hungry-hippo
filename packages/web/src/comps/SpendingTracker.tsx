@@ -10,9 +10,14 @@ import AddNewCategory from './spendingTracker/AddNewCategory';
 type Props = {
   budgetCategories: State['budgetCategories'];
   addNewCategory: any;
+  history: { date: any; amount: number }[];
 };
 
-const SpendingTracker: FC<Props> = ({ budgetCategories, addNewCategory }) => {
+const SpendingTracker: FC<Props> = ({
+  budgetCategories,
+  addNewCategory,
+  history,
+}) => {
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
 
   const handleAddCategory: any = () => setIsUserAddingCategory(true);
@@ -23,10 +28,10 @@ const SpendingTracker: FC<Props> = ({ budgetCategories, addNewCategory }) => {
   };
 
   return (
-    <div>
+    <div className="spending-tracker">
       <h2>Track My Spending</h2>
       {budgetCategories.map(x => {
-        return <CategoryLine key={x.category} {...x} />;
+        return <CategoryLine history={history} key={x.category} {...x} />;
       })}
       {isUserAddingCategory && (
         <AddNewCategory handleClick={handleSubmitNewCategory} />
@@ -44,7 +49,4 @@ const mapDispatchToProps = {
   addNewCategory,
 };
 
-export default connect(
-  mapPropsToState,
-  mapDispatchToProps,
-)(SpendingTracker);
+export default connect(mapPropsToState, mapDispatchToProps)(SpendingTracker);

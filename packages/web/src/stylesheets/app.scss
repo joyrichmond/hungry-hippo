@@ -9,10 +9,4 @@ body {
 }
 
 @import './global-classes.scss';
-
-#categoryLine {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem;
-  width: 50rem;
-}
+@import './spending-tracker.scss';

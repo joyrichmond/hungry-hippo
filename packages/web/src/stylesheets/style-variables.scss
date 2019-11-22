@@ -1,6 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import './fonts.scss';
 
 $primary-font: 'Montserrat', sans-serif;
-$primary: #737373;
-$shadow: #bbb;
+$accent-font: 'Alata', sans-serif;
+$primary: #4cc26b;
+$light: #8cdea1;
+$dark: #005c17;
+$shadow: #005c17;
 $hover: #bbb;

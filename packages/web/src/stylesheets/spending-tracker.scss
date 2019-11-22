@@ -1,0 +1,46 @@
+@import './style-variables.scss';
+
+.spending-tracker {
+  background-color: $primary;
+  border-radius: 20px;
+  border: solid 2px $light;
+  box-shadow: 2px 2px 0 $shadow;
+  padding: 2rem;
+  color: $dark;
+  font-size: 1.1rem;
+
+  h2 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.7rem;
+    font-family: $accent-font;
+  }
+  .add-button {
+    width: 100%;
+  }
+
+  input {
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    font-family: $primary-font;
+    width: 5rem;
+  }
+}
+
+.categoryLine {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  width: 50rem;
+  align-items: center;
+
+  span,
+  input,
+  button {
+    flex-basis: 5rem;
+  }
+
+  .budget-info > span {
+    margin: 0.5rem;
+  }
+}
