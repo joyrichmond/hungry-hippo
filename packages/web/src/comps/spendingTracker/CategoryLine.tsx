@@ -20,9 +20,9 @@ const CategoryLine: FC<Props> = ({ category, budgetedAmount, history }) => {
 
   return (
     <div className="categoryLine">
-      <span>{category}</span>
+      <span className="categoryName">{category}</span>
       <input type="text" />
-      <div className="budget-info">
+      <div className="budgetInfo">
         <span>totalSpent</span>
         <span>of</span>
         <span>{budgetedAmount}</span>

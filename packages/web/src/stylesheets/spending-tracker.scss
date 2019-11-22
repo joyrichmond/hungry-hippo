@@ -1,9 +1,9 @@
 @import './style-variables.scss';
 
 .spending-tracker {
-  background-color: $primary;
+  background-color: $light;
   border-radius: 20px;
-  border: solid 2px $light;
+  border: solid 2px $accent;
   box-shadow: 2px 2px 0 $shadow;
   padding: 2rem;
   color: $dark;
@@ -17,6 +17,7 @@
   }
   .add-button {
     width: 100%;
+    margin-top: 1.5rem;
   }
 
   input {
@@ -30,9 +31,10 @@
 .categoryLine {
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1rem 0;
   width: 50rem;
   align-items: center;
+  border-bottom: solid 1px $primary;
 
   span,
   input,
@@ -40,7 +42,12 @@
     flex-basis: 5rem;
   }
 
-  .budget-info > span {
+  .budgetInfo > span {
     margin: 0.5rem;
+  }
+
+  .categoryName {
+    font-family: $accent-font;
+    font-size: 1.3rem;
   }
 }
