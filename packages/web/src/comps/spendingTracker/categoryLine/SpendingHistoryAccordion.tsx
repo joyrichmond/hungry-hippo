@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 
 type Props = {
-  history: { date: any; amount: number }[];
+  transactionHistory: { date: string; amount: number }[];
 };
 
-const SpendingHistoryAccordion: FC<Props> = ({ history }) => {
+const SpendingHistoryAccordion: FC<Props> = ({ transactionHistory }) => {
   return (
     <div>
-      {history.map((transaction, i) => (
+      {transactionHistory.map((transaction, i) => (
         <div key={i}>
           <div>{transaction.date}</div>
           <div>{transaction.amount}</div>

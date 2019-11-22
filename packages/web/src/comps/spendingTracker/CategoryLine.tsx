@@ -6,10 +6,14 @@ import SpendingHistoryAccordion from './categoryLine/SpendingHistoryAccordion';
 type Props = {
   category: string;
   budgetedAmount: number;
-  history: { date: any; amount: number }[];
+  transactionHistory: { date: string; amount: number }[];
 };
 
-const CategoryLine: FC<Props> = ({ category, budgetedAmount, history }) => {
+const CategoryLine: FC<Props> = ({
+  category,
+  budgetedAmount,
+  transactionHistory,
+}) => {
   const [isTransactionHistoryVisible, setIsTransactionVisible] = useState(
     false,
   );
@@ -31,7 +35,7 @@ const CategoryLine: FC<Props> = ({ category, budgetedAmount, history }) => {
         <FontAwesomeIcon icon="chevron-down" />
       </button>
       {isTransactionHistoryVisible && (
-        <SpendingHistoryAccordion history={history} />
+        <SpendingHistoryAccordion transactionHistory={transactionHistory} />
       )}
     </div>
   );
