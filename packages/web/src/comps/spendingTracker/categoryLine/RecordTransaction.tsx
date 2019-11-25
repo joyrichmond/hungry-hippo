@@ -1,7 +1,6 @@
 import React, { useState, FC, KeyboardEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { format } from 'date-fns';
-import config from '../../../app-config';
 import { handleOnEnter } from '../../../services/handle-on-enter';
 
 type Props = {
@@ -17,15 +16,13 @@ const RecordTransaction: FC<Props> = ({
   const [amount, setAmount] = useState();
   const [vendor, setVendor] = useState();
 
-  const handleOnKeyEvent = (e: KeyboardEvent) => {
-    if (e.keyCode === config.ENTER_KEY) {
-      handleRecordTransaction();
-    }
-  };
-
   const handleRecordTransaction = () => {
     if (date) {
-      addTransactionToHistory({ date, amount: parseInt(amount), vendor });
+      addTransactionToHistory({
+        date: format(new Date(`${date}`), 'MM-dd-yyyy'),
+        amount: parseInt(amount),
+        vendor,
+      });
     } else {
       addTransactionToHistory({
         date: `${format(new Date(), 'MM-dd-yyyy')}`,
@@ -42,7 +39,7 @@ const RecordTransaction: FC<Props> = ({
         type="string"
         onChange={e => setDate(e.target.value)}
         value={date}
-        placeholder={format(new Date(), 'E MM-d')}
+        placeholder={format(new Date(), 'MM-dd-yy')}
         autoFocus
       />
       <input
