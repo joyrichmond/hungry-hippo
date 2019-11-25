@@ -1,7 +1,10 @@
 import React, { FC, useState } from 'react';
 import { connect } from 'react-redux';
 import { State } from '../reducers/spendingTrackerReducer';
-import { addNewCategory } from '../actions/spendingTrackerActions';
+import {
+  addNewCategory,
+  addTransactionToHistory,
+} from '../actions/spendingTrackerActions';
 
 import CategoryLine from './spendingTracker/CategoryLine';
 import AddButton from './utils/AddButton';
@@ -10,9 +13,16 @@ import AddNewCategory from './spendingTracker/AddNewCategory';
 type Props = {
   budgetCategories: State['budgetCategories'];
   addNewCategory: any;
+  addTransactionToHistory: any;
+  transactionHistory: { date: string; amount: number }[];
 };
 
-const SpendingTracker: FC<Props> = ({ budgetCategories, addNewCategory }) => {
+const SpendingTracker: FC<Props> = ({
+  budgetCategories,
+  addNewCategory,
+  addTransactionToHistory,
+  transactionHistory,
+}) => {
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
 
   const handleAddCategory: any = () => setIsUserAddingCategory(true);
@@ -23,10 +33,17 @@ const SpendingTracker: FC<Props> = ({ budgetCategories, addNewCategory }) => {
   };
 
   return (
-    <div>
+    <div className="spending-tracker">
       <h2>Track My Spending</h2>
       {budgetCategories.map(x => {
-        return <CategoryLine key={x.category} {...x} />;
+        return (
+          <CategoryLine
+            transactionHistory={transactionHistory}
+            addTransactionToHistory={addTransactionToHistory}
+            key={x.category}
+            {...x}
+          />
+        );
       })}
       {isUserAddingCategory && (
         <AddNewCategory handleClick={handleSubmitNewCategory} />
@@ -38,13 +55,12 @@ const SpendingTracker: FC<Props> = ({ budgetCategories, addNewCategory }) => {
 
 const mapPropsToState = (state: State) => ({
   budgetCategories: state.budgetCategories,
+  transactionHistory: state.transactionHistory,
 });
 
 const mapDispatchToProps = {
   addNewCategory,
+  addTransactionToHistory,
 };
 
-export default connect(
-  mapPropsToState,
-  mapDispatchToProps,
-)(SpendingTracker);
+export default connect(mapPropsToState, mapDispatchToProps)(SpendingTracker);

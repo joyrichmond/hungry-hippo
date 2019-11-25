@@ -6,7 +6,7 @@ type Props = {
 };
 
 const AddButton: FC<Props> = ({ handleClick }) => (
-  <button className="fill-button" onClick={handleClick}>
+  <button className="fill-button add-button" onClick={handleClick}>
     <FontAwesomeIcon icon={['fas', 'plus']} />
   </button>
 );

@@ -9,7 +9,10 @@ import Header from './comps/Header';
 import AtAGlance from './comps/AtAGlance';
 import SpendingTracker from './comps/SpendingTracker';
 
-const store = createStore(spendingTrackerReducer);
+const store = createStore(
+  spendingTrackerReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
 
 function App() {
   return (

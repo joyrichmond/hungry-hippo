@@ -4,6 +4,7 @@ import {
   faPlus,
   faTrashAlt,
   faPencilAlt,
+  faArrowRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faChevronDown, faPlus, faTrashAlt, faPencilAlt);
+library.add(faChevronDown, faPlus, faTrashAlt, faPencilAlt, faArrowRight);
