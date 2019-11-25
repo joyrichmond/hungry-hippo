@@ -1,7 +1,10 @@
 import React, { FC, useState } from 'react';
 import { connect } from 'react-redux';
 import { State } from '../reducers/spendingTrackerReducer';
-import { addNewCategory } from '../actions/spendingTrackerActions';
+import {
+  addNewCategory,
+  addTransactionToHistory,
+} from '../actions/spendingTrackerActions';
 
 import CategoryLine from './spendingTracker/CategoryLine';
 import AddButton from './utils/AddButton';
@@ -10,12 +13,14 @@ import AddNewCategory from './spendingTracker/AddNewCategory';
 type Props = {
   budgetCategories: State['budgetCategories'];
   addNewCategory: any;
+  addTransactionToHistory: any;
   transactionHistory: { date: string; amount: number }[];
 };
 
 const SpendingTracker: FC<Props> = ({
   budgetCategories,
   addNewCategory,
+  addTransactionToHistory,
   transactionHistory,
 }) => {
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
@@ -34,6 +39,7 @@ const SpendingTracker: FC<Props> = ({
         return (
           <CategoryLine
             transactionHistory={transactionHistory}
+            addTransactionToHistory={addTransactionToHistory}
             key={x.category}
             {...x}
           />
@@ -54,6 +60,7 @@ const mapPropsToState = (state: State) => ({
 
 const mapDispatchToProps = {
   addNewCategory,
+  addTransactionToHistory,
 };
 
 export default connect(mapPropsToState, mapDispatchToProps)(SpendingTracker);

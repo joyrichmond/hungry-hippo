@@ -1,4 +1,7 @@
-import { ADD_NEW_CATEGORY } from '../actions/spendingTrackerActions';
+import {
+  ADD_NEW_CATEGORY,
+  ADD_TRANSACTION_TO_HISTORY,
+} from '../actions/spendingTrackerActions';
 import { mockTransactionHistory } from '../mock-data/mockTransactionHistory';
 
 export type State = {
@@ -25,14 +28,10 @@ type Action = {
   type?: string;
   category?: string;
   budgetedAmount?: number;
+  transaction?: any;
 };
 
-export default (
-  state = initialState(),
-  action: Action = {
-    type: undefined,
-  },
-) => {
+export default (state = initialState(), action: Action) => {
   switch (action.type) {
     case ADD_NEW_CATEGORY: {
       return {
@@ -43,6 +42,14 @@ export default (
         ],
       };
     }
+
+    case ADD_TRANSACTION_TO_HISTORY: {
+      return {
+        ...state,
+        transactionHistory: [...state.transactionHistory, action.transaction],
+      };
+    }
+
     default:
       return state;
   }
