@@ -13,33 +13,37 @@ type TransactionInfo = {
 };
 
 const RecordTransaction: FC<Props> = ({ addTransactionToHistory }) => {
-  const [transactionInfo, setTransactionInfo] = useState({});
+  const [date, setDate] = useState();
+  const [amount, setAmount] = useState();
+  const [vendor, setVendor] = useState();
+  let transactionInfo = { date, amount, vendor };
+
   const handleRecordTransaction = () => {
     addTransactionToHistory(transactionInfo);
+    setDate(undefined);
+    setAmount(undefined);
+    setVendor(undefined);
   };
 
   return (
     <div className="recordTransaction">
       <input
-        type="text"
+        type="number"
         placeholder="date (press enter to use today's date)"
-        onChange={e =>
-          setTransactionInfo({ ...transactionInfo, date: e.target.value })
-        }
+        onChange={e => setDate(e.target.value)}
+        value={date}
       />
       <input
         type="number"
         placeholder="amount"
-        onChange={e =>
-          setTransactionInfo({ ...transactionInfo, amount: e.target.value })
-        }
+        onChange={e => setAmount(e.target.value)}
+        value={transactionInfo.amount}
       />
       <input
         type="text"
         placeholder="vendor"
-        onChange={e =>
-          setTransactionInfo({ ...transactionInfo, vendor: e.target.value })
-        }
+        onChange={e => setVendor(e.target.value)}
+        value={transactionInfo.vendor}
       />
       <button onClick={handleRecordTransaction}>
         <FontAwesomeIcon icon={['fas', 'arrow-right']} />
