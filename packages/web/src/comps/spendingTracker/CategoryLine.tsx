@@ -35,8 +35,11 @@ const CategoryLine: FC<Props> = ({
 
   return (
     <div className="flex-v flex-centered-v">
-      <div className="categoryLine" onClick={handleUserCanAddTransaction}>
-        <span className="categoryName">{category}</span>
+      <div className="categoryLine">
+        <div className="categoryName" onClick={handleUserCanAddTransaction}>
+          {category}
+          <FontAwesomeIcon icon={['fas', 'plus']} />
+        </div>
         <div className="budgetInfo">
           <span>{budgetedAmount - getTotalSpent(transactionHistory)}</span>
           <span>of</span>

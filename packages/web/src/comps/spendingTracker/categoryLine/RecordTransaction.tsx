@@ -36,10 +36,10 @@ const RecordTransaction: FC<Props> = ({
   return (
     <div className="recordTransaction input-container">
       <input
-        type="string"
+        type="text"
         onChange={e => setDate(e.target.value)}
         value={date}
-        placeholder={format(new Date(), 'MM-dd-yy')}
+        placeholder={format(new Date(), 'MM-dd-yyyy')}
         autoFocus
       />
       <input
