@@ -47,7 +47,10 @@ const CategoryLine: FC<Props> = ({
         </button>
       </div>
       {canUserRecordTransaction && (
-        <RecordTransaction addTransactionToHistory={addTransactionToHistory} />
+        <RecordTransaction
+          addTransactionToHistory={addTransactionToHistory}
+          setCanUserRecordTransaction={setCanUserRecordTransaction}
+        />
       )}
       {isTransactionHistoryVisible && (
         <TransactionHistoryAccordion transactionHistory={transactionHistory} />
