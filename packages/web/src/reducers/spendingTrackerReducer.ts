@@ -5,7 +5,7 @@ import {
 import { mockTransactionHistory } from '../mock-data/mockTransactionHistory';
 
 export type State = {
-  budgetCategories: {
+  budgets: {
     category: string;
     budgetedAmount: number;
   }[];
@@ -16,7 +16,7 @@ export type State = {
 };
 
 export const initialState = (): State => ({
-  budgetCategories: [
+  budgets: [
     { category: 'Groceries', budgetedAmount: 750 },
     { category: 'Kids', budgetedAmount: 400 },
     { category: 'Home', budgetedAmount: 200 },
@@ -36,8 +36,8 @@ export default (state = initialState(), action: Action) => {
     case ADD_NEW_CATEGORY: {
       return {
         ...state,
-        budgetCategories: [
-          ...state.budgetCategories,
+        budgets: [
+          ...state.budgets,
           { category: action.category, budgetedAmount: action.budgetedAmount },
         ],
       };

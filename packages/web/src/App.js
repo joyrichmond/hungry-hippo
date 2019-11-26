@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 import spendingTrackerReducer from './reducers/spendingTrackerReducer';
 import './stylesheets/app.scss';
 import './fontawesome';
+import { ToastContainer } from 'react-toastify';
 
 import Header from './comps/Header';
 import AtAGlance from './comps/AtAGlance';
@@ -18,6 +19,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
+        <ToastContainer pauseOnFocusLoss />
         <Header />
         <AtAGlance />
         <SpendingTracker />
