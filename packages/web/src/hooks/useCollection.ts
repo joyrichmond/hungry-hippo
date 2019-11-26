@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { request } from './api-service';
+import { request } from '../services/api-service';
 import Budget from '../../../api/src/models/Budget';
 import Category from '../../../api/src/models/Category';
 import Transaction from '../../../api/src/models/Transaction';
