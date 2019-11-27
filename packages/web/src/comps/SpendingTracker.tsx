@@ -10,6 +10,7 @@ import {
 } from '../hooks/useCollection';
 import { format, lastDayOfMonth, startOfMonth, compareDesc } from 'date-fns';
 import Category from '../../../api/src/models/Category';
+import LoadingView from './utils/LoadingView';
 
 const SpendingTracker: FC = () => {
   const categories = useCategories();
@@ -17,6 +18,11 @@ const SpendingTracker: FC = () => {
   const transactions = useTransactions();
 
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  if (categories) {
+    setIsLoading(false);
+  }
 
   const budgetMonthRange = {
     start: startOfMonth(new Date()),
@@ -68,7 +74,7 @@ const SpendingTracker: FC = () => {
           );
         })
       ) : (
-        <div>Loading...</div>
+        <LoadingView isLoading={isLoading} />
       )}
       {isUserAddingCategory && (
         <AddNewCategory handleClick={handleSubmitNewCategory} />
