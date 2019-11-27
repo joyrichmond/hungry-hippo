@@ -47,26 +47,30 @@ const SpendingTracker: FC = () => {
     );
 
   const handleSubmitNewCategory: any = (category: any, budgetedAmount: any) => {
-    addNewCategory(category, budgetedAmount);
+    //addNewCategory(category, budgetedAmount);
     setIsUserAddingCategory(false);
   };
 
   return (
     <div className="spending-tracker">
       <h2>Track My Spending</h2>
-      {categories.map(category => {
-        const budget = getBudget(category);
-        const budgetedAmount = budget && budget.amount;
-        return (
-          <CategoryLine
-            category={category.name}
-            budgetedAmount={budgetedAmount}
-            transactionHistory={getTransactions(category)}
-            addTransactionToHistory={addTransactionToHistory}
-            key={category._id!.toHexString()}
-          />
-        );
-      })}
+      {categories ? (
+        categories.map(category => {
+          const budget = getBudget(category);
+          const budgetedAmount = budget && budget.amount;
+          return (
+            <CategoryLine
+              category={category.name}
+              budgetedAmount={budgetedAmount}
+              transactionHistory={getTransactions(category)}
+              addTransactionToHistory={null as any}
+              key={category._id!.toHexString()}
+            />
+          );
+        })
+      ) : (
+        <div>Loading...</div>
+      )}
       {isUserAddingCategory && (
         <AddNewCategory handleClick={handleSubmitNewCategory} />
       )}
@@ -74,3 +78,5 @@ const SpendingTracker: FC = () => {
     </div>
   );
 };
+
+export default SpendingTracker;

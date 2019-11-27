@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
+import Transaction from '../../../../../api/src/models/Transaction';
 
 type Props = {
-  transactionHistory: { date: string; amount: number }[];
+  transactionHistory: Transaction[];
 };
 
 const TransactionHistoryAccordion: FC<Props> = ({ transactionHistory }) => {
