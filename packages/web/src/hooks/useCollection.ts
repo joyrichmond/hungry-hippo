@@ -8,7 +8,7 @@ import Transaction from '../../../api/src/models/Transaction';
 
 const useCollection = <T>(
   type: string,
-  selectorFn: (state: any) => any,
+  selectorFn: (state: any) => T[],
   fetchFn: () => Promise<T[]>,
 ) => {
   const dispatch = useDispatch();
@@ -27,20 +27,23 @@ const useCollection = <T>(
   return collection;
 };
 
-export const useBudgets = useCollection<Budget>(
-  'SET_BUDGETS',
-  state => state.budgets,
-  () => request('budgets'),
-);
+export const useBudgets = () =>
+  useCollection<Budget>(
+    'SET_BUDGETS',
+    state => state.budgets,
+    () => request('budgets'),
+  );
 
-export const useCategories = useCollection<Category>(
-  'SET_CATEGORIES',
-  state => state.categories,
-  () => request('categories'),
-);
+export const useCategories = () =>
+  useCollection<Category>(
+    'SET_CATEGORIES',
+    state => state.categories,
+    () => request('categories'),
+  );
 
-export const useTransactions = useCollection<Transaction>(
-  'SET_TRANSACTIONS',
-  state => state.transactions,
-  () => request('transactions'),
-);
+export const useTransactions = () =>
+  useCollection<Transaction>(
+    'SET_TRANSACTIONS',
+    state => state.transactions,
+    () => request('transactions'),
+  );
