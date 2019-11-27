@@ -2,34 +2,35 @@ import React, { useState, FC, KeyboardEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { format } from 'date-fns';
 import { handleOnEnter } from '../../../services/handle-on-enter';
+import { create } from 'istanbul-reports';
 
 type Props = {
-  addTransactionToHistory: any;
   setCanUserRecordTransaction: any;
 };
 
-const RecordTransaction: FC<Props> = ({
-  addTransactionToHistory,
-  setCanUserRecordTransaction,
-}) => {
+const RecordTransaction: FC<Props> = ({ setCanUserRecordTransaction }) => {
   const [date, setDate] = useState();
   const [amount, setAmount] = useState();
   const [vendor, setVendor] = useState();
 
-  const handleRecordTransaction = () => {
+  const createNewTransaction = () => {
     if (date) {
-      addTransactionToHistory({
+      return {
         date: format(new Date(`${date}`), 'MM-dd-yyyy'),
         amount: parseInt(amount),
         vendor,
-      });
+      };
     } else {
-      addTransactionToHistory({
+      return {
         date: `${format(new Date(), 'MM-dd-yyyy')}`,
         amount: parseInt(amount),
         vendor,
-      });
+      };
     }
+  };
+
+  const handleRecordTransaction = () => {
+    createNewTransaction();
     setCanUserRecordTransaction(false);
   };
 

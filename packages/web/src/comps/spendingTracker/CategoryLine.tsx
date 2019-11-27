@@ -10,14 +10,12 @@ type Props = {
   category: string;
   budgetedAmount?: number;
   transactionHistory: Transaction[];
-  addTransactionToHistory: any;
 };
 
 const CategoryLine: FC<Props> = ({
   category,
   budgetedAmount,
   transactionHistory,
-  addTransactionToHistory,
 }) => {
   const [isTransactionHistoryVisible, setIsTransactionVisible] = useState(
     false,
@@ -56,7 +54,6 @@ const CategoryLine: FC<Props> = ({
       </div>
       {canUserRecordTransaction && (
         <RecordTransaction
-          addTransactionToHistory={addTransactionToHistory}
           setCanUserRecordTransaction={setCanUserRecordTransaction}
         />
       )}

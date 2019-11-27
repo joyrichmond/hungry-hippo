@@ -63,7 +63,6 @@ const SpendingTracker: FC = () => {
               category={category.name}
               budgetedAmount={budgetedAmount}
               transactionHistory={getTransactions(category)}
-              addTransactionToHistory={null as any}
               key={category._id!.toHexString()}
             />
           );
