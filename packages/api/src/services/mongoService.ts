@@ -15,4 +15,9 @@ const getClient = () => {
 
 export const connect = () => getClient().connect();
 
-export const getDb = () => getClient().db(process.env.DB_NAME);
+const getDb = () => getClient().db(process.env.DB_NAME);
+
+export const getCollection = (name: string) => {
+  const db = getDb();
+  return db.collection(name);
+};

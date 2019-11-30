@@ -1,6 +1,12 @@
 import express from 'express';
 import { config } from 'dotenv';
 import { connect } from './services/mongoService';
+import getCategories from './handlers/getCategories';
+import getBudgets from './handlers/getBudgets';
+import getTransactions from './handlers/getTransactions';
+import postBudget from './handlers/postBudget';
+import postTransaction from './handlers/postTransaction';
+import postCategory from './handlers/postCategory';
 
 config();
 
@@ -17,9 +23,13 @@ const main = async () => {
 
   const app = express();
 
-  app.get('/spending-tracker', (req, res) => {
-    res.json({ status: 'received' });
-  });
+  app.get('/categories', getCategories);
+  app.get('/budgets', getBudgets);
+  app.get('/transactions', getTransactions);
+
+  app.post('/categories', postCategory);
+  app.post('/budgets', postBudget);
+  app.post('/transactions', postTransaction);
 
   const port = process.env.PORT || 5000;
   app.listen(port, () => console.log(`Listening on ${port}`));
