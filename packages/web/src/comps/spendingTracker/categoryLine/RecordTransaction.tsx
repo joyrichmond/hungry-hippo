@@ -2,7 +2,6 @@ import React, { useState, FC, KeyboardEvent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { format } from 'date-fns';
 import { handleOnEnter } from '../../../services/handle-on-enter';
-import { create } from 'istanbul-reports';
 
 type Props = {
   setCanUserRecordTransaction: any;

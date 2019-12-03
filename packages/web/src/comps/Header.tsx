@@ -3,6 +3,8 @@ import { format } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { monthsTypeDate } from '../data/dates';
 import Dropdown from './utils/Dropdown';
+import { getBudgetYears } from '../services/get-years-array';
+import { useBudgets } from '../hooks/useCollection';
 
 const Header: FC = () => {
   const [selectedMonth, setSelectedMonth] = useState(
@@ -11,6 +13,8 @@ const Header: FC = () => {
   const [selectedYear, setSelectedYear] = useState(format(new Date(), 'yyyy'));
   const [canUserSelectMonth, setCanUserSelectMonth] = useState(false);
   const [canUserSelectYear, setCanUserSelectYear] = useState(false);
+
+  const budgets = useBudgets();
 
   const handleSelectMonth = () => {
     setCanUserSelectMonth(!canUserSelectMonth);
@@ -37,7 +41,10 @@ const Header: FC = () => {
           <FontAwesomeIcon icon="chevron-down" />
         </button>
         {canUserSelectYear && (
-          <Dropdown array={[]} setStateFn={setSelectedYear} />
+          <Dropdown
+            array={getBudgetYears(budgets)}
+            setStateFn={setSelectedYear}
+          />
         )}
       </div>
     </div>

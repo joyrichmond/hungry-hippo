@@ -18,7 +18,7 @@ const SpendingTracker: FC = () => {
   const transactions = useTransactions();
 
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   if (categories) {
     setIsLoading(false);
