@@ -1,28 +1,22 @@
+import { compareDesc, format, lastDayOfMonth, startOfMonth } from 'date-fns';
 import React, { FC, useState } from 'react';
 
+import Budget from '../../../api/src/models/Budget';
+import Category from '../../../api/src/models/Category';
+import Transaction from '../../../api/src/models/Transaction';
+import { useCategories } from '../hooks/useCollection';
+import AddNewCategory from './spendingTracker/AddNewCategory';
 import CategoryLine from './spendingTracker/CategoryLine';
 import AddButton from './utils/AddButton';
-import AddNewCategory from './spendingTracker/AddNewCategory';
-import {
-  useBudgets,
-  useTransactions,
-  useCategories,
-} from '../hooks/useCollection';
-import { format, lastDayOfMonth, startOfMonth, compareDesc } from 'date-fns';
-import Category from '../../../api/src/models/Category';
 import LoadingView from './utils/LoadingView';
 
 const SpendingTracker: FC = () => {
   const categories = useCategories();
-  const budgets = useBudgets();
-  const transactions = useTransactions();
+  const budgets = [] as Budget[]; //useBudgets();
+  const transactions = [] as Transaction[]; // useTransactions();
 
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  if (categories) {
-    setIsLoading(false);
-  }
+  const isLoading = !!categories;
 
   const budgetMonthRange = {
     start: startOfMonth(new Date()),
@@ -61,7 +55,7 @@ const SpendingTracker: FC = () => {
     <div className="spending-tracker">
       <h2>Track My Spending</h2>
       {categories ? (
-        categories.map(category => {
+        Object.values(categories).map(category => {
           const budget = getBudget(category);
           const budgetedAmount = budget && budget.amount;
           return (
@@ -69,7 +63,7 @@ const SpendingTracker: FC = () => {
               category={category.name}
               budgetedAmount={budgetedAmount}
               transactionHistory={getTransactions(category)}
-              key={category._id!.toHexString()}
+              key={category._id as string}
             />
           );
         })

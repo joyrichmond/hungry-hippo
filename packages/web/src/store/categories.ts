@@ -18,7 +18,7 @@ export const categoriesReducer = (
   switch (type) {
     case 'SET_CATEGORIES': {
       return collection!.reduce(
-        (prev, curr) => ({ ...prev, [curr._id!.toHexString()]: curr }),
+        (prev, curr) => ({ ...prev, [curr._id as string]: curr }),
         {} as CategoriesState,
       );
     }

@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
-import { useBudgets } from '../hooks/useCollection';
-import { getYear, format } from 'date-fns';
+import { getYear } from 'date-fns';
+
 import Budget from '../../../api/src/models/Budget';
 
 export const getBudgetYears = (budgets: Budget[]) => {

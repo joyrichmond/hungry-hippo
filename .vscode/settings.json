@@ -10,5 +10,10 @@
     "**/.DS_Store": true,
     "**/dist": true,
     "**/node_modules": true
-  }
+  },
+  "importSorter.importStringConfiguration.quoteMark": "single",
+  "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  "importSorter.sortConfiguration.joinImportPaths": true,
+  "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.count": 999,
+  "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.type": "maxLineLength"
 }

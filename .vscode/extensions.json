@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "mike-co.import-sorter",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "wix.vscode-import-cost"
+  ]
+}

@@ -1,10 +1,13 @@
-import React, { FC, useState } from 'react';
 import { format } from 'date-fns';
+import React, { FC, useState } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { monthsTypeDate } from '../data/dates';
-import Dropdown from './utils/Dropdown';
 import { getBudgetYears } from '../services/get-years-array';
-import { useBudgets } from '../hooks/useCollection';
+import Dropdown from './utils/Dropdown';
+
+//import { useBudgets } from '../hooks/useCollection';
 
 const Header: FC = () => {
   const [selectedMonth, setSelectedMonth] = useState(
@@ -14,7 +17,7 @@ const Header: FC = () => {
   const [canUserSelectMonth, setCanUserSelectMonth] = useState(false);
   const [canUserSelectYear, setCanUserSelectYear] = useState(false);
 
-  const budgets = useBudgets();
+  const budgets = [] as any; //useBudgets();
 
   const handleSelectMonth = () => {
     setCanUserSelectMonth(!canUserSelectMonth);
