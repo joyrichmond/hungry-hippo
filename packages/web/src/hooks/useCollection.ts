@@ -20,7 +20,7 @@ const useCollection = <T>(
     }
 
     fetchFn()
-      .then(res => dispatch({ type, res }))
+      .then(res => dispatch({ type, collection: res }))
       .catch(err => toast.error(err.message));
   }, [collection, dispatch]);
 

@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { config } from 'dotenv';
 import { connect } from './services/mongoService';
 import getCategories from './handlers/getCategories';
@@ -23,13 +23,17 @@ const main = async () => {
 
   const app = express();
 
-  app.get('/categories', getCategories);
-  app.get('/budgets', getBudgets);
-  app.get('/transactions', getTransactions);
+  const router = Router();
 
-  app.post('/categories', postCategory);
-  app.post('/budgets', postBudget);
-  app.post('/transactions', postTransaction);
+  app.use('/api', router);
+
+  router.get('/categories', getCategories);
+  router.get('/budgets', getBudgets);
+  router.get('/transactions', getTransactions);
+
+  router.post('/categories', postCategory);
+  router.post('/budgets', postBudget);
+  router.post('/transactions', postTransaction);
 
   const port = process.env.PORT || 5000;
   app.listen(port, () => console.log(`Listening on ${port}`));
