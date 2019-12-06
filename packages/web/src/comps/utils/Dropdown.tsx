@@ -1,18 +1,21 @@
 import React, { FC } from 'react';
 
 type Props = {
-  array: any[];
+  array: (string | number)[];
   setStateFn: any;
+  defaultOption: string | number;
 };
 
-const Dropdown: FC<Props> = ({ array, setStateFn }) => (
-  <div>
-    {array.map((item: any, i: number) => (
-      <div key={i} onClick={() => setStateFn(item)}>
+const Dropdown: FC<Props> = ({ array, setStateFn, defaultOption }) => (
+  <select value={defaultOption} disabled={array.length === 0}>
+    (array.length > 0) :
+    {array.map(item => (
+      <option key={item} value={item} onClick={() => setStateFn(item)}>
         {item}
-      </div>
+      </option>
     ))}
-  </div>
+    ? <option>{defaultOption}</option>
+  </select>
 );
 
 export default Dropdown;
