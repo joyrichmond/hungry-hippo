@@ -1,16 +1,19 @@
 import { compareDesc, format, lastDayOfMonth, startOfMonth } from 'date-fns';
 import React, { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Budget from '../../../api/src/models/Budget';
 import Category from '../../../api/src/models/Category';
 import Transaction from '../../../api/src/models/Transaction';
 import { useCategories } from '../hooks/useCollection';
+import { request } from '../services/api-service';
 import AddNewCategory from './spendingTracker/AddNewCategory';
 import CategoryLine from './spendingTracker/CategoryLine';
 import AddButton from './utils/AddButton';
 import LoadingView from './utils/LoadingView';
 
 const SpendingTracker: FC = () => {
+  const dispatch = useDispatch();
   const categories = useCategories();
   const budgets = [] as Budget[]; //useBudgets();
   const transactions = [] as Transaction[]; // useTransactions();
@@ -22,7 +25,12 @@ const SpendingTracker: FC = () => {
     start: startOfMonth(new Date()),
     end: lastDayOfMonth(new Date()),
   };
-  const handleAddCategory: any = () => setIsUserAddingCategory(true);
+
+  const addNewCategory = (categoryName: string) =>
+    request('categories', {
+      method: 'POST',
+      body: { name: categoryName },
+    }).then(item => dispatch({ type: 'ADD_CATEGORY', item }));
 
   const getBudget = (category: Category) => {
     const sortedBudgets = budgets
@@ -46,11 +54,6 @@ const SpendingTracker: FC = () => {
         transaction.date <= budgetMonthRange.end,
     );
 
-  const handleSubmitNewCategory: any = (category: any, budgetedAmount: any) => {
-    //addNewCategory(category, budgetedAmount);
-    setIsUserAddingCategory(false);
-  };
-
   return (
     <div className="spending-tracker">
       <h2>Track My Spending</h2>
@@ -71,9 +74,9 @@ const SpendingTracker: FC = () => {
         <LoadingView isLoading={isLoading} />
       )}
       {isUserAddingCategory && (
-        <AddNewCategory handleClick={handleSubmitNewCategory} />
+        <AddNewCategory addNewCategory={addNewCategory} />
       )}
-      <AddButton handleClick={handleAddCategory} />
+      <AddButton handleClick={() => setIsUserAddingCategory(true)} />
     </div>
   );
 };

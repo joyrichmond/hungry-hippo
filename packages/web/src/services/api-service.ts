@@ -1,6 +1,6 @@
-type RequestOptions = RequestInit & {
+interface RequestOptions extends RequestInit {
   body?: any;
-};
+}
 
 const getToken = () => localStorage.getItem('_t');
 

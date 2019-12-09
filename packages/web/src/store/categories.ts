@@ -2,7 +2,8 @@ import Category from '../../../api/src/models/Category';
 
 type CategoriesAction = {
   collection?: Category[];
-  type: 'SET_CATEGORIES' | 'RESET';
+  item?: Category;
+  type: 'SET_CATEGORIES' | 'ADD_CATEGORY' | 'RESET';
 };
 
 export type CategoriesState = {
@@ -13,7 +14,7 @@ export const categoriesReducer = (
   state: CategoriesState | null = null,
   action: CategoriesAction,
 ) => {
-  const { collection, type } = action;
+  const { collection, item, type } = action;
 
   switch (type) {
     case 'SET_CATEGORIES': {
@@ -21,6 +22,10 @@ export const categoriesReducer = (
         (prev, curr) => ({ ...prev, [curr._id as string]: curr }),
         {} as CategoriesState,
       );
+    }
+
+    case 'ADD_CATEGORY': {
+      return { ...state, [item!._id as string]: item! };
     }
 
     case 'RESET': {

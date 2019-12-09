@@ -1,12 +1,14 @@
-import express, { Router } from 'express';
+import bodyParser from 'body-parser';
 import { config } from 'dotenv';
-import { connect } from './services/mongoService';
-import getCategories from './handlers/getCategories';
+import express, { Router } from 'express';
+
 import getBudgets from './handlers/getBudgets';
+import getCategories from './handlers/getCategories';
 import getTransactions from './handlers/getTransactions';
 import postBudget from './handlers/postBudget';
-import postTransaction from './handlers/postTransaction';
 import postCategory from './handlers/postCategory';
+import postTransaction from './handlers/postTransaction';
+import { connect } from './services/mongoService';
 
 config();
 
@@ -22,6 +24,7 @@ const main = async () => {
   await connect();
 
   const app = express();
+  app.use(bodyParser.json());
 
   const router = Router();
 

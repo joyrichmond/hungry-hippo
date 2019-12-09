@@ -1,7 +1,9 @@
-import React, { useState, FC, KeyboardEvent } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { format } from 'date-fns';
-import { handleOnEnter } from '../../../services/handle-on-enter';
+import React, { FC, useState } from 'react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { handleOnEnter } from '../../../services/key-press-handlers';
 
 type Props = {
   setCanUserRecordTransaction: any;
