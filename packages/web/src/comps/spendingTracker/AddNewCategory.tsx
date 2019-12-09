@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 
 type Props = {
   addNewCategory: (categoryName: string) => Promise<any>;
@@ -7,7 +7,8 @@ type Props = {
 const AddNewCategory: FC<Props> = ({ addNewCategory }) => {
   const [categoryInput, setCategoryInput] = useState('');
 
-  const handleSubmitNewCategory = () => {
+  const handleSubmitNewCategory = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     addNewCategory(categoryInput);
     setCategoryInput('');
   };
@@ -21,9 +22,7 @@ const AddNewCategory: FC<Props> = ({ addNewCategory }) => {
         value={categoryInput}
         required
       />
-      <button type="submit" className="fill-button">
-        Add
-      </button>
+      <button className="fill-button">Add</button>
     </form>
   );
 };
