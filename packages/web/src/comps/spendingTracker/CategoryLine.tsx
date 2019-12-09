@@ -1,10 +1,11 @@
 import React, { FC, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getTotalSpent } from '../../services/get-total-spent';
 
-import TransactionHistoryAccordion from './categoryLine/TransactionHistoryAccordion';
-import RecordTransaction from './categoryLine/RecordTransaction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Transaction from '../../../../api/src/models/Transaction';
+import { getTotalSpent } from '../../services/get-total-spent';
+import RecordTransaction from './RecordTransaction';
+import TransactionHistoryAccordion from './TransactionHistoryAccordion';
 
 type Props = {
   category: string;

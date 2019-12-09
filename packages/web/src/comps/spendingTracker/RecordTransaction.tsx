@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { handleOnEnter } from '../../../services/key-press-handlers';
+import { handleOnEnter } from '../../services/key-press-handlers';
 
 type Props = {
   setCanUserRecordTransaction: any;

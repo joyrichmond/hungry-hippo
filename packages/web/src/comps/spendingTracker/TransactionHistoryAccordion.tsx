@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import Transaction from '../../../../../api/src/models/Transaction';
+
+import Transaction from '../../../../api/src/models/Transaction';
 
 type Props = {
   transactionHistory: Transaction[];
