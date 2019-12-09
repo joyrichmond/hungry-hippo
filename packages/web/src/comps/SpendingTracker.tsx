@@ -46,6 +46,12 @@ const SpendingTracker: FC = () => {
     }
   };
 
+  const addNewBudget = (amount: number) =>
+    request('budgets', {
+      method: 'POST',
+      body: { effectiveDate: format(new Date(), 'MM/dd/yyyy'), amount },
+    }).then(item => dispatch({ type: 'ADD_BUDGET', item }));
+
   const getTransactions = (category: Category) =>
     transactions.filter(
       transaction =>
@@ -67,6 +73,7 @@ const SpendingTracker: FC = () => {
               budgetedAmount={budgetedAmount}
               transactionHistory={getTransactions(category)}
               key={category._id as string}
+              addNewBudget={addNewBudget}
             />
           );
         })
