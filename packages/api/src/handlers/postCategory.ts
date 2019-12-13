@@ -1,7 +1,8 @@
+import { ObjectID } from 'bson';
 import { Request, Response } from 'express';
+
 import Category from '../models/Category';
 import { getCollection } from '../services/mongoService';
-import { ObjectID } from 'bson';
 
 const postCategory = async (req: Request, res: Response) => {
   const { name } = req.body as Category;
@@ -10,7 +11,7 @@ const postCategory = async (req: Request, res: Response) => {
 
   const result = {
     name,
-    _id: new ObjectID(),
+    _id: new ObjectID().toHexString,
   };
 
   await col.insertOne(result);

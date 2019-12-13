@@ -1,18 +1,21 @@
 import React, { FC, useState } from 'react';
 
+import Category from '../../../../api/src/models/Category';
 import Transaction from '../../../../api/src/models/Transaction';
 import { getTotalSpent } from '../../services/get-total-spent';
 
 type Props = {
   budgetedAmount?: number | undefined;
-  addNewBudget: (amount: number) => Promise<any>;
+  addNewBudget: (amount: number, categoryId: any) => Promise<any>;
   transactionHistory: Transaction[];
+  categoryId: string;
 };
 
 const LineItemBudget: FC<Props> = ({
   budgetedAmount,
   addNewBudget,
   transactionHistory,
+  categoryId,
 }) => {
   const [budgetInput, setBudgetInput] = useState(budgetedAmount || null);
 
@@ -23,8 +26,8 @@ const LineItemBudget: FC<Props> = ({
       )}
       <form
         onSubmit={e => {
+          addNewBudget(budgetInput!, categoryId);
           e.preventDefault();
-          addNewBudget(budgetInput!);
         }}
       >
         <input

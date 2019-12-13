@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -28,12 +28,12 @@ const useCollection = <T>(
   return collection;
 };
 
-// export const useBudgets = () =>
-//   useCollection<Budget>(
-//     'SET_BUDGETS',
-//     state => state.budgets,
-//     () => request('budgets'),
-//   );
+export const useBudgets = () =>
+  useCollection<Budget>(
+    'SET_BUDGETS',
+    state => state.budgets,
+    () => request('budgets'),
+  );
 
 export const useCategories = () =>
   useCollection<Category>(

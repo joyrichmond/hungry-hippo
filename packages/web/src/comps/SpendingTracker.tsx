@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import Budget from '../../../api/src/models/Budget';
 import Category from '../../../api/src/models/Category';
 import Transaction from '../../../api/src/models/Transaction';
-import { useCategories } from '../hooks/useCollection';
+import { useBudgets, useCategories } from '../hooks/useCollection';
 import { request } from '../services/api-service';
 import AddNewCategory from './spendingTracker/AddNewCategory';
 import CategoryLine from './spendingTracker/CategoryLine';
@@ -15,11 +15,11 @@ import LoadingView from './utils/LoadingView';
 const SpendingTracker: FC = () => {
   const dispatch = useDispatch();
   const categories = useCategories();
-  const budgets = [] as Budget[]; //useBudgets();
+  const budgets = useBudgets();
   const transactions = [] as Transaction[]; // useTransactions();
 
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
-  const isLoading = !!categories;
+  const isLoading = !!categories || !!budgets;
 
   const budgetMonthRange = {
     start: startOfMonth(new Date()),
@@ -33,23 +33,29 @@ const SpendingTracker: FC = () => {
     }).then(item => dispatch({ type: 'ADD_CATEGORY', item }));
 
   const getBudget = (category: Category) => {
-    const sortedBudgets = budgets
-      .filter(
-        budget =>
-          category._id === budget.categoryId &&
-          budget.effectiveDate <= budgetMonthRange.end,
-      )
-      .sort((a, b) => compareDesc(a.effectiveDate, b.effectiveDate));
+    const sortedBudgets =
+      budgets &&
+      Object.values(budgets)
+        .filter(
+          budget =>
+            category._id === budget.categoryId &&
+            budget.effectiveDate <= budgetMonthRange.end,
+        )
+        .sort((a, b) => compareDesc(a.effectiveDate, b.effectiveDate));
 
-    if (sortedBudgets.length) {
+    if (sortedBudgets !== null && sortedBudgets.length) {
       return sortedBudgets[0];
     }
   };
 
-  const addNewBudget = (amount: number) =>
+  const addNewBudget = (amount: number, categoryId: string) =>
     request('budgets', {
       method: 'POST',
-      body: { effectiveDate: format(new Date(), 'MM/dd/yyyy'), amount },
+      body: {
+        effectiveDate: format(new Date(), 'MM/dd/yyyy'),
+        amount: amount,
+        categoryId: categoryId,
+      },
     }).then(item => dispatch({ type: 'ADD_BUDGET', item }));
 
   const getTransactions = (category: Category) =>
@@ -69,7 +75,7 @@ const SpendingTracker: FC = () => {
           const budgetedAmount = budget && budget.amount;
           return (
             <CategoryLine
-              category={category.name}
+              category={category}
               budgetedAmount={budgetedAmount}
               transactionHistory={getTransactions(category)}
               key={category._id as string}
