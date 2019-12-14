@@ -55,3 +55,18 @@
     outline: none;
   }
 }
+
+.displayInput {
+  background-color: inherit;
+  border: none;
+
+  &:hover {
+    background-color: #ffffff80;
+    cursor: text;
+  }
+
+  &:focus {
+    background-color: white;
+    border: default;
+  }
+}

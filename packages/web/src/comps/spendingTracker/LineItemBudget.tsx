@@ -16,14 +16,15 @@ const LineItemBudget: FC<Props> = ({
   transactionHistory,
   categoryId,
 }) => {
-  const [budgetInput, setBudgetInput] = useState(
-    budgetedAmount ? budgetedAmount.toString() : undefined,
-  );
+  const [budgetInput, setBudgetInput] = useState(budgetedAmount || '');
 
   return (
-    <div>
+    <div className="lineItemBudget flex-h">
       {budgetedAmount && (
-        <span>{budgetedAmount - getTotalSpent(transactionHistory)} of</span>
+        <span className="flex-h">
+          <span>{budgetedAmount - getTotalSpent(transactionHistory)}</span>
+          <span>of</span>
+        </span>
       )}
       <form
         onSubmit={e => {
@@ -33,10 +34,11 @@ const LineItemBudget: FC<Props> = ({
       >
         <input
           type="text"
-          placeholder="budgeted amount"
+          placeholder="amount"
           className={budgetedAmount ? 'displayInput' : 'requireInput'}
           value={budgetInput}
           onChange={e => setBudgetInput(e.target.value)}
+          onFocus={e => e.target.select()}
           required
         />
       </form>
