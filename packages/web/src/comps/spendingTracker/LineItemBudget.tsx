@@ -5,14 +5,14 @@ import { getTotalSpent } from '../../services/get-total-spent';
 
 type Props = {
   budgetedAmount?: number | undefined;
-  addNewBudget: (amount: number, categoryId: any) => Promise<any>;
+  setBudget: (amount: number, categoryId: any) => Promise<any>;
   transactionHistory?: Transaction[] | undefined;
   categoryId: string;
 };
 
 const LineItemBudget: FC<Props> = ({
   budgetedAmount,
-  addNewBudget,
+  setBudget,
   transactionHistory,
   categoryId,
 }) => {
@@ -27,7 +27,7 @@ const LineItemBudget: FC<Props> = ({
       )}
       <form
         onSubmit={e => {
-          addNewBudget(Number(budgetInput), categoryId);
+          setBudget(Number(budgetInput), categoryId);
           e.preventDefault();
         }}
       >

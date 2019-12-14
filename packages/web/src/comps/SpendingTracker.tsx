@@ -6,6 +6,7 @@ import { useBudgets, useCategories } from '../hooks/useCollection';
 import Category from '../models/Category';
 import Transaction from '../models/Transaction';
 import { request } from '../services/api-service';
+import { addBudget } from '../services/budget-service';
 import AddNewCategory from './spendingTracker/AddNewCategory';
 import CategoryLine from './spendingTracker/CategoryLine';
 import AddButton from './utils/AddButton';
@@ -38,7 +39,7 @@ const SpendingTracker: FC = () => {
         .filter(
           budget =>
             categoryId === (budget.categoryId as string) &&
-            new Date(budget.effectiveDate) <= budgetMonthRange.end,
+            budget.effectiveDate <= budgetMonthRange.end,
         )
         .sort((a, b) => compareDesc(a.effectiveDate, b.effectiveDate));
 
@@ -49,14 +50,11 @@ const SpendingTracker: FC = () => {
     return undefined;
   };
 
-  const addNewBudget = (amount: number, categoryId: string) =>
-    request('budgets', {
-      method: 'POST',
-      body: {
-        effectiveDate: new Date(),
-        amount: amount,
-        categoryId: categoryId,
-      },
+  const setBudget = (amount: number, categoryId: string) =>
+    addBudget({
+      effectiveDate: new Date(),
+      amount: amount,
+      categoryId: categoryId,
     }).then(item => dispatch({ type: 'ADD_BUDGET', item }));
 
   const getTransactions = (category: Category) =>
@@ -75,18 +73,13 @@ const SpendingTracker: FC = () => {
           const budget = getBudget(category._id as string);
           const budgetedAmount = budget && budget.amount;
 
-          if (budgets && category._id === '5de6d84ab7c69b3f508e7c3f') {
-            console.log(budgets);
-            console.log(budget);
-          }
-
           return (
             <CategoryLine
               category={category}
               budgetedAmount={budgetedAmount}
               transactionHistory={getTransactions(category)}
               key={category._id as string}
-              addNewBudget={addNewBudget}
+              setBudget={setBudget}
             />
           );
         })

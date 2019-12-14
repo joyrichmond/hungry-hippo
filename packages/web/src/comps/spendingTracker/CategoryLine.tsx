@@ -12,14 +12,14 @@ type Props = {
   category: Category;
   budgetedAmount?: number | undefined;
   transactionHistory?: Transaction[];
-  addNewBudget: (amount: number, categoryId: any) => Promise<any>;
+  setBudget: (amount: number, categoryId: any) => Promise<any>;
 };
 
 const CategoryLine: FC<Props> = ({
   category,
   budgetedAmount,
   transactionHistory,
-  addNewBudget,
+  setBudget,
 }) => {
   const [isTransactionHistoryVisible, setIsTransactionVisible] = useState(
     false,
@@ -45,7 +45,7 @@ const CategoryLine: FC<Props> = ({
         </div>
         <LineItemBudget
           budgetedAmount={budgetedAmount}
-          addNewBudget={addNewBudget}
+          setBudget={setBudget}
           transactionHistory={transactionHistory}
           categoryId={category._id as string}
         />
