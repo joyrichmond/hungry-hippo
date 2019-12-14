@@ -1,4 +1,4 @@
-import Category from '../../../api/src/models/Category';
+import Category from '../models/Category';
 
 type CategoriesAction = {
   collection?: Category[];

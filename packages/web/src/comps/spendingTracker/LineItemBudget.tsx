@@ -1,13 +1,12 @@
 import React, { FC, useState } from 'react';
 
-import Category from '../../../../api/src/models/Category';
-import Transaction from '../../../../api/src/models/Transaction';
+import Transaction from '../../models/Transaction';
 import { getTotalSpent } from '../../services/get-total-spent';
 
 type Props = {
   budgetedAmount?: number | undefined;
   addNewBudget: (amount: number, categoryId: any) => Promise<any>;
-  transactionHistory: Transaction[];
+  transactionHistory?: Transaction[] | undefined;
   categoryId: string;
 };
 
@@ -17,7 +16,9 @@ const LineItemBudget: FC<Props> = ({
   transactionHistory,
   categoryId,
 }) => {
-  const [budgetInput, setBudgetInput] = useState(budgetedAmount || null);
+  const [budgetInput, setBudgetInput] = useState(
+    budgetedAmount ? budgetedAmount.toString() : undefined,
+  );
 
   return (
     <div>
@@ -26,7 +27,7 @@ const LineItemBudget: FC<Props> = ({
       )}
       <form
         onSubmit={e => {
-          addNewBudget(budgetInput!, categoryId);
+          addNewBudget(Number(budgetInput), categoryId);
           e.preventDefault();
         }}
       >
@@ -34,8 +35,8 @@ const LineItemBudget: FC<Props> = ({
           type="text"
           placeholder="budgeted amount"
           className={budgetedAmount ? 'displayInput' : 'requireInput'}
-          value={budgetedAmount}
-          onChange={e => setBudgetInput(parseInt(e.target.value))}
+          value={budgetInput}
+          onChange={e => setBudgetInput(e.target.value)}
           required
         />
       </form>

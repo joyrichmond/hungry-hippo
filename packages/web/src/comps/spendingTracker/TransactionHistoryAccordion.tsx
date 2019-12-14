@@ -1,20 +1,21 @@
 import React, { FC } from 'react';
 
-import Transaction from '../../../../api/src/models/Transaction';
+import Transaction from '../../models/Transaction';
 
 type Props = {
-  transactionHistory: Transaction[];
+  transactionHistory: Transaction[] | undefined;
 };
 
 const TransactionHistoryAccordion: FC<Props> = ({ transactionHistory }) => {
   return (
     <div className="transactionHistory">
-      {transactionHistory.map((transaction, i) => (
-        <div key={i} className="transactionLine">
-          <div>{transaction.date}</div>
-          <div>${transaction.amount}</div>
-        </div>
-      ))}
+      {transactionHistory &&
+        transactionHistory.map((transaction, i) => (
+          <div key={i} className="transactionLine">
+            <div>{transaction.date}</div>
+            <div>${transaction.amount}</div>
+          </div>
+        ))}
     </div>
   );
 };

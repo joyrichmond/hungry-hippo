@@ -2,17 +2,16 @@ import React, { FC, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Category from '../../../../api/src/models/Category';
-import Transaction from '../../../../api/src/models/Transaction';
-import { getTotalSpent } from '../../services/get-total-spent';
+import Category from '../../models/Category';
+import Transaction from '../../models/Transaction';
 import LineItemBudget from './LineItemBudget';
 import RecordTransaction from './RecordTransaction';
 import TransactionHistoryAccordion from './TransactionHistoryAccordion';
 
 type Props = {
   category: Category;
-  budgetedAmount?: number;
-  transactionHistory: Transaction[];
+  budgetedAmount?: number | undefined;
+  transactionHistory?: Transaction[];
   addNewBudget: (amount: number, categoryId: any) => Promise<any>;
 };
 

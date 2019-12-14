@@ -1,11 +1,10 @@
-import { compareDesc, format, lastDayOfMonth, startOfMonth } from 'date-fns';
+import { compareDesc, lastDayOfMonth, startOfMonth } from 'date-fns';
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import Budget from '../../../api/src/models/Budget';
-import Category from '../../../api/src/models/Category';
-import Transaction from '../../../api/src/models/Transaction';
 import { useBudgets, useCategories } from '../hooks/useCollection';
+import Category from '../models/Category';
+import Transaction from '../models/Transaction';
 import { request } from '../services/api-service';
 import AddNewCategory from './spendingTracker/AddNewCategory';
 import CategoryLine from './spendingTracker/CategoryLine';
@@ -32,27 +31,29 @@ const SpendingTracker: FC = () => {
       body: { name: categoryName },
     }).then(item => dispatch({ type: 'ADD_CATEGORY', item }));
 
-  const getBudget = (category: Category) => {
+  const getBudget = (categoryId: string) => {
     const sortedBudgets =
       budgets &&
       Object.values(budgets)
         .filter(
           budget =>
-            category._id === budget.categoryId &&
-            budget.effectiveDate <= budgetMonthRange.end,
+            categoryId === (budget.categoryId as string) &&
+            new Date(budget.effectiveDate) <= budgetMonthRange.end,
         )
         .sort((a, b) => compareDesc(a.effectiveDate, b.effectiveDate));
 
     if (sortedBudgets !== null && sortedBudgets.length) {
       return sortedBudgets[0];
     }
+
+    return undefined;
   };
 
   const addNewBudget = (amount: number, categoryId: string) =>
     request('budgets', {
       method: 'POST',
       body: {
-        effectiveDate: format(new Date(), 'MM/dd/yyyy'),
+        effectiveDate: new Date(),
         amount: amount,
         categoryId: categoryId,
       },
@@ -69,10 +70,16 @@ const SpendingTracker: FC = () => {
   return (
     <div className="spending-tracker">
       <h2>Track My Spending</h2>
-      {categories ? (
-        Object.values(categories).map(category => {
-          const budget = getBudget(category);
+      {categories && budgets ? (
+        [...Object.values(categories)].map(category => {
+          const budget = getBudget(category._id as string);
           const budgetedAmount = budget && budget.amount;
+
+          if (budgets && category._id === '5de6d84ab7c69b3f508e7c3f') {
+            console.log(budgets);
+            console.log(budget);
+          }
+
           return (
             <CategoryLine
               category={category}

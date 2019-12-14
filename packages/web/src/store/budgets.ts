@@ -1,4 +1,4 @@
-import Budget from '../../../api/src/models/Budget';
+import Budget from '../models/Budget';
 
 type BudgetsAction = {
   collection?: Budget[];

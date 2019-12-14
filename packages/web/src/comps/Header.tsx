@@ -1,6 +1,5 @@
 import { format } from 'date-fns';
 import React, { FC, useState } from 'react';
-import Select from 'react-select';
 
 import { months } from '../data/dates';
 import { getBudgetYears } from '../services/get-years-array';
