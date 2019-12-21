@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Budget from '../models/Budget';
 import Category from '../models/Category';
+import Transaction from '../models/Transaction';
 import { request } from '../services/api-service';
 import { getBudgets } from '../services/budget-service';
+import { getTransactions } from '../services/transactions-service';
 import { AppState } from '../store/root';
 
 const useCollection = <T>(
@@ -40,9 +42,9 @@ export const useCategories = () =>
     () => request('categories'),
   );
 
-// export const useTransactions = () =>
-//   useCollection<Transaction>(
-//     'SET_TRANSACTIONS',
-//     state => state.transactions,
-//     () => request('transactions'),
-//   );
+export const useTransactions = () =>
+  useCollection<Transaction>(
+    'SET_TRANSACTIONS',
+    state => state.transactions,
+    () => getTransactions(),
+  );

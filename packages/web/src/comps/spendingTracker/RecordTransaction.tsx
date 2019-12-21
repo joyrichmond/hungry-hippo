@@ -3,40 +3,52 @@ import React, { FC, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { handleOnEnter } from '../../services/key-press-handlers';
+import Transaction from '../../models/Transaction';
 
 type Props = {
   setCanUserRecordTransaction: any;
+  categoryId: string;
+  setTransaction: (transaction: Omit<Transaction, '_id'>) => void;
 };
 
-const RecordTransaction: FC<Props> = ({ setCanUserRecordTransaction }) => {
-  const [date, setDate] = useState();
-  const [amount, setAmount] = useState();
-  const [vendor, setVendor] = useState();
+const RecordTransaction: FC<Props> = ({
+  setCanUserRecordTransaction,
+  categoryId,
+  setTransaction,
+}) => {
+  const [date, setDate] = useState('');
+  const [amount, setAmount] = useState('');
+  const [vendor, setVendor] = useState('');
 
   const createNewTransaction = () => {
     if (date) {
       return {
-        date: format(new Date(`${date}`), 'MM-dd-yyyy'),
+        date: new Date(`${date}`),
         amount: parseInt(amount),
         vendor,
+        categoryId,
       };
     } else {
       return {
-        date: `${format(new Date(), 'MM-dd-yyyy')}`,
+        date: new Date(),
         amount: parseInt(amount),
         vendor,
+        categoryId,
       };
     }
   };
 
   const handleRecordTransaction = () => {
-    createNewTransaction();
+    const newTransaction = createNewTransaction();
     setCanUserRecordTransaction(false);
+    setTransaction(newTransaction);
   };
 
   return (
-    <div className="recordTransaction input-container">
+    <form
+      className="recordTransaction input-container"
+      onSubmit={handleRecordTransaction}
+    >
       <input
         type="text"
         onChange={e => setDate(e.target.value)}
@@ -55,12 +67,11 @@ const RecordTransaction: FC<Props> = ({ setCanUserRecordTransaction }) => {
         placeholder="vendor"
         onChange={e => setVendor(e.target.value)}
         value={vendor}
-        onKeyUp={e => handleOnEnter(e, handleRecordTransaction)}
       />
       <button onClick={handleRecordTransaction}>
         <FontAwesomeIcon icon={['fas', 'arrow-right']} />
       </button>
-    </div>
+    </form>
   );
 };
 

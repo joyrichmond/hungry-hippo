@@ -11,8 +11,9 @@ import TransactionHistoryAccordion from './TransactionHistoryAccordion';
 type Props = {
   category: Category;
   budgetedAmount?: number | undefined;
-  transactionHistory?: Transaction[];
-  setBudget: (amount: number, categoryId: any) => Promise<any>;
+  transactionHistory?: Transaction[] | null | undefined;
+  setBudget: (amount: number, categoryId: string) => void;
+  setTransaction: (transaction: Omit<Transaction, '_id'>) => void;
 };
 
 const CategoryLine: FC<Props> = ({
@@ -20,6 +21,7 @@ const CategoryLine: FC<Props> = ({
   budgetedAmount,
   transactionHistory,
   setBudget,
+  setTransaction,
 }) => {
   const [isTransactionHistoryVisible, setIsTransactionVisible] = useState(
     false,
@@ -28,18 +30,13 @@ const CategoryLine: FC<Props> = ({
     false,
   );
 
-  const handleUserCanAddTransaction = () => {
-    setCanUserRecordTransaction(!canUserRecordTransaction);
-  };
-
-  const handleViewHistory = () => {
-    setIsTransactionVisible(!isTransactionHistoryVisible);
-  };
-
   return (
     <div className="flex-v flex-centered-v">
       <div className="categoryLine">
-        <div className="categoryName" onClick={handleUserCanAddTransaction}>
+        <div
+          className="categoryName"
+          onClick={() => setCanUserRecordTransaction(!canUserRecordTransaction)}
+        >
           {category.name}
           <FontAwesomeIcon icon={['fas', 'plus']} />
         </div>
@@ -49,13 +46,18 @@ const CategoryLine: FC<Props> = ({
           transactionHistory={transactionHistory}
           categoryId={category._id as string}
         />
-        <button type="button" onClick={handleViewHistory}>
+        <button
+          type="button"
+          onClick={() => setIsTransactionVisible(!isTransactionHistoryVisible)}
+        >
           <FontAwesomeIcon icon="chevron-down" />
         </button>
       </div>
       {canUserRecordTransaction && (
         <RecordTransaction
           setCanUserRecordTransaction={setCanUserRecordTransaction}
+          categoryId={category._id as string}
+          setTransaction={setTransaction}
         />
       )}
       {isTransactionHistoryVisible && (

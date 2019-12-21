@@ -1,9 +1,10 @@
+import { format } from 'date-fns';
 import React, { FC } from 'react';
 
 import Transaction from '../../models/Transaction';
 
 type Props = {
-  transactionHistory: Transaction[] | undefined;
+  transactionHistory: Transaction[] | null | undefined;
 };
 
 const TransactionHistoryAccordion: FC<Props> = ({ transactionHistory }) => {
@@ -12,8 +13,9 @@ const TransactionHistoryAccordion: FC<Props> = ({ transactionHistory }) => {
       {transactionHistory &&
         transactionHistory.map((transaction, i) => (
           <div key={i} className="transactionLine">
-            <div>{transaction.date}</div>
+            <div>{format(transaction.date, 'MM/dd')}</div>
             <div>${transaction.amount}</div>
+            <div>{transaction.vendor}</div>
           </div>
         ))}
     </div>

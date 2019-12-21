@@ -3,4 +3,5 @@ export default interface Transaction {
   categoryId: string;
   date: Date;
   amount: number;
+  vendor: string;
 }

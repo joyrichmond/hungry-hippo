@@ -5,8 +5,8 @@ import { getTotalSpent } from '../../services/get-total-spent';
 
 type Props = {
   budgetedAmount?: number | undefined;
-  setBudget: (amount: number, categoryId: any) => Promise<any>;
-  transactionHistory?: Transaction[] | undefined;
+  setBudget: (amount: number, categoryId: string) => void;
+  transactionHistory?: Transaction[] | null | undefined;
   categoryId: string;
 };
 

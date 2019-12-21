@@ -1,12 +1,14 @@
-import { compareDesc, lastDayOfMonth, startOfMonth } from 'date-fns';
+import { compareDesc } from 'date-fns';
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { useBudgets, useCategories } from '../hooks/useCollection';
+import { useBudgets, useCategories, useTransactions } from '../hooks/useCollection';
 import Category from '../models/Category';
 import Transaction from '../models/Transaction';
 import { request } from '../services/api-service';
 import { addBudget } from '../services/budget-service';
+import { budgetMonthRange } from '../services/time-service';
+import { addTransaction, filterTransactions } from '../services/transactions-service';
 import AddNewCategory from './spendingTracker/AddNewCategory';
 import CategoryLine from './spendingTracker/CategoryLine';
 import AddButton from './utils/AddButton';
@@ -16,15 +18,10 @@ const SpendingTracker: FC = () => {
   const dispatch = useDispatch();
   const categories = useCategories();
   const budgets = useBudgets();
-  const transactions = [] as Transaction[]; // useTransactions();
+  const transactions = useTransactions();
 
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
   const isLoading = !!categories || !!budgets;
-
-  const budgetMonthRange = {
-    start: startOfMonth(new Date()),
-    end: lastDayOfMonth(new Date()),
-  };
 
   const addNewCategory = (categoryName: string) =>
     request('categories', {
@@ -50,20 +47,19 @@ const SpendingTracker: FC = () => {
     return undefined;
   };
 
-  const setBudget = (amount: number, categoryId: string) =>
+  const setBudget = (amount: number, categoryId: string) => {
     addBudget({
       effectiveDate: new Date(),
       amount: amount,
       categoryId: categoryId,
     }).then(item => dispatch({ type: 'ADD_BUDGET', item }));
+  };
 
-  const getTransactions = (category: Category) =>
-    transactions.filter(
-      transaction =>
-        category._id === transaction.categoryId &&
-        budgetMonthRange.start <= transaction.date &&
-        transaction.date <= budgetMonthRange.end,
+  const setTransaction = (transaction: Omit<Transaction, '_id'>) => {
+    addTransaction(transaction).then(item =>
+      dispatch({ type: 'ADD_TRANSACTION', item }),
     );
+  };
 
   return (
     <div className="spending-tracker">
@@ -77,9 +73,10 @@ const SpendingTracker: FC = () => {
             <CategoryLine
               category={category}
               budgetedAmount={budgetedAmount}
-              transactionHistory={getTransactions(category)}
+              transactionHistory={filterTransactions(transactions, category)}
               key={category._id as string}
               setBudget={setBudget}
+              setTransaction={setTransaction}
             />
           );
         })
