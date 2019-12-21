@@ -2,10 +2,9 @@ import { format } from 'date-fns';
 import React, { FC, useState } from 'react';
 
 import { months } from '../data/dates';
+import { useBudgets } from '../hooks/useCollection';
 import { getBudgetYears } from '../services/get-years-array';
 import Dropdown from './utils/Dropdown';
-
-//import { useBudgets } from '../hooks/useCollection';
 
 const Header: FC = () => {
   const [selectedMonth, setSelectedMonth] = useState(
@@ -13,7 +12,8 @@ const Header: FC = () => {
   );
   const [selectedYear, setSelectedYear] = useState(format(new Date(), 'yyyy'));
 
-  const budgets = [] as any; //useBudgets();
+  const budgets = useBudgets();
+  const budgetsArray = Object.values(budgets);
 
   return (
     <div className="header flex-h flex-space-between">
@@ -27,7 +27,7 @@ const Header: FC = () => {
         />
         <Dropdown
           value={selectedYear}
-          array={getBudgetYears(budgets)}
+          array={getBudgetYears(budgetsArray)}
           setStateFn={setSelectedYear}
           defaultOption={format(new Date(), 'yyyy')}
         />
