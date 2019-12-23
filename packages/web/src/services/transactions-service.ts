@@ -17,6 +17,8 @@ export const addTransaction = (item: Transaction) =>
 
 export const filterTransactions = (
   transactions: TransactionsState | null,
+  budgetStart: Date,
+  budgetEnd: Date,
   category: Category,
 ) => {
   const filtered =
@@ -24,8 +26,8 @@ export const filterTransactions = (
     Object.values(transactions).filter(
       transaction =>
         category._id === transaction.categoryId &&
-        budgetMonthRange.start <= transaction.date &&
-        transaction.date <= budgetMonthRange.end,
+        budgetStart <= transaction.date &&
+        transaction.date <= budgetEnd,
     );
   console.log('getTransactions', {
     budgetMonthRange,

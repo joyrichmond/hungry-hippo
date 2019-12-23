@@ -1,6 +1,6 @@
 import { compareDesc } from 'date-fns';
 import React, { FC, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useBudgets, useCategories, useTransactions } from '../hooks/useCollection';
 import Category from '../models/Category';
@@ -9,6 +9,7 @@ import { request } from '../services/api-service';
 import { addBudget } from '../services/budget-service';
 import { budgetMonthRange } from '../services/time-service';
 import { addTransaction, filterTransactions } from '../services/transactions-service';
+import { AppState } from '../store/root';
 import AddNewCategory from './spendingTracker/AddNewCategory';
 import CategoryLine from './spendingTracker/CategoryLine';
 import AddButton from './utils/AddButton';
@@ -19,6 +20,8 @@ const SpendingTracker: FC = () => {
   const categories = useCategories();
   const budgets = useBudgets();
   const transactions = useTransactions();
+  const selectedMonth = useSelector((state: AppState) => state.selectedMonth)
+    .selectedMonth;
 
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
   const isLoading = !!categories || !!budgets;
@@ -36,7 +39,7 @@ const SpendingTracker: FC = () => {
         .filter(
           budget =>
             categoryId === (budget.categoryId as string) &&
-            budget.effectiveDate <= budgetMonthRange.end,
+            budget.effectiveDate <= selectedMonth.monthEnd,
         )
         .sort((a, b) => compareDesc(a.effectiveDate, b.effectiveDate));
 
@@ -73,7 +76,12 @@ const SpendingTracker: FC = () => {
             <CategoryLine
               category={category}
               budgetedAmount={budgetedAmount}
-              transactionHistory={filterTransactions(transactions, category)}
+              transactionHistory={filterTransactions(
+                transactions,
+                selectedMonth.monthStart,
+                selectedMonth.monthEnd,
+                category,
+              )}
               key={category._id as string}
               setBudget={setBudget}
               setTransaction={setTransaction}
