@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import Transaction from '../../models/Transaction';
 import { getTotalSpent } from '../../services/get-total-spent';
@@ -18,6 +18,12 @@ const LineItemBudget: FC<Props> = ({
 }) => {
   const [budgetInput, setBudgetInput] = useState(budgetedAmount || '');
 
+  useEffect(
+    () =>
+      budgetedAmount ? setBudgetInput(budgetedAmount) : setBudgetInput(''),
+    [budgetedAmount],
+  );
+
   return (
     <div className="lineItemBudget flex-h">
       {budgetedAmount && (
@@ -30,6 +36,7 @@ const LineItemBudget: FC<Props> = ({
         onSubmit={e => {
           setBudget(Number(budgetInput), categoryId);
           e.preventDefault();
+          setBudgetInput(budgetedAmount!);
         }}
       >
         <input
