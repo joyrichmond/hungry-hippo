@@ -20,8 +20,7 @@ const SpendingTracker: FC = () => {
   const categories = useCategories();
   const budgets = useBudgets();
   const transactions = useTransactions();
-  const selectedMonth = useSelector((state: AppState) => state.selectedMonth)
-    .selectedMonth;
+  const selectedMonth = useSelector((state: AppState) => state.selectedMonth);
 
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
   const isLoading = !!categories || !!budgets;
@@ -52,7 +51,7 @@ const SpendingTracker: FC = () => {
 
   const setBudget = (amount: number, categoryId: string) => {
     addBudget({
-      effectiveDate: new Date(),
+      effectiveDate: selectedMonth.monthStart,
       amount: amount,
       categoryId: categoryId,
     }).then(item => dispatch({ type: 'ADD_BUDGET', item }));

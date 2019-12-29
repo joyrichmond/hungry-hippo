@@ -20,8 +20,8 @@ const Header: FC = () => {
   const budgets = useBudgets();
 
   const budgetsArray = budgets && Object.values(budgets);
-  const selectedYear = format(state.selectedMonth.monthStart, 'yyyy');
-  const selectedMonth = format(state.selectedMonth.monthStart, 'MMMM');
+  const selectedYear = format(state.monthStart, 'yyyy');
+  const selectedMonth = format(state.monthStart, 'MMMM');
 
   const updateMonth = (newMonth: string) => {
     const newSelectedMonth = createBudgetMonthRange(newMonth, selectedYear);
