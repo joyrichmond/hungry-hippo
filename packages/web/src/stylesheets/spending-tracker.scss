@@ -1,9 +1,8 @@
 @import './style-variables.scss';
 
 .spending-tracker {
-  background-color: $light;
+  background-color: white;
   border-radius: 20px;
-  border: solid 2px $accent;
   box-shadow: 2px 2px 0 $shadow;
   padding: 2rem;
   color: $dark;

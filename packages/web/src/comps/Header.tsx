@@ -1,5 +1,6 @@
 import { endOfMonth, format, startOfMonth } from 'date-fns';
 import React, { FC, useState } from 'react';
+import DatePicker from 'react-datepicker';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { months } from '../data/dates';
@@ -18,30 +19,40 @@ const Header: FC = () => {
   const dispatch = useDispatch();
   const state = useSelector((state: AppState) => state.selectedMonth);
   const budgets = useBudgets();
+  const [startDate, setStartDate] = useState(new Date());
 
-  const budgetsArray = budgets && Object.values(budgets);
-  const selectedYear = format(state.monthStart, 'yyyy');
-  const selectedMonth = format(state.monthStart, 'MMMM');
+  // const budgetsArray = budgets && Object.values(budgets);
+  // const selectedYear = format(state.monthStart, 'yyyy');
+  // const selectedMonth = format(state.monthStart, 'MMMM');
 
-  const updateMonth = (newMonth: string) => {
-    const newSelectedMonth = createBudgetMonthRange(newMonth, selectedYear);
+  const updateMonth = (newMonth: Date) => {
+    setStartDate(newMonth);
+    const newSelectedMonth = createBudgetMonthRange(newMonth);
     dispatch({
       type: 'SET_SELECTED_MONTH',
       item: newSelectedMonth,
     });
   };
 
-  const updateYear = (newYear: string) => {
-    const newSelectedMonth = createBudgetMonthRange(selectedMonth, newYear);
-    dispatch({
-      type: 'SET_SELECTED_MONTH',
-      item: newSelectedMonth,
-    });
-  };
+  // const updateMonth = (newMonth: string) => {
+  //   // const newSelectedMonth = createBudgetMonthRange(newMonth, selectedYear);
+  //   dispatch({
+  //     type: 'SET_SELECTED_MONTH',
+  //     item: newMonth,
+  //   });
+  // };
+
+  // const updateYear = (newYear: string) => {
+  //   const newSelectedMonth = createBudgetMonthRange(selectedMonth, newYear);
+  //   dispatch({
+  //     type: 'SET_SELECTED_MONTH',
+  //     item: newSelectedMonth,
+  //   });
+  // };
 
   return (
     <div className="header flex-h flex-space-between">
-      <span>Month</span>
+      {/* <span>Month</span>
       <div>
         <Dropdown
           value={selectedMonth}
@@ -55,7 +66,13 @@ const Header: FC = () => {
           setStateFn={updateYear}
           defaultOption={format(new Date(), 'yyyy')}
         />
-      </div>
+      </div> */}
+      <DatePicker
+        selected={startDate}
+        onChange={date => updateMonth(date!)}
+        dateFormat="MMMM yyyy"
+        showMonthYearPicker
+      />
     </div>
   );
 };

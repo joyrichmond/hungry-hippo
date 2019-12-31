@@ -1,13 +1,14 @@
-import React from 'react';
-import { Provider } from 'react-redux';
 import './stylesheets/app.scss';
 import './fontawesome';
-import { ToastContainer } from 'react-toastify';
-import store from './store/store';
 
-import Header from './comps/Header';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+
 import AtAGlance from './comps/AtAGlance';
+import Header from './comps/Header';
 import SpendingTracker from './comps/SpendingTracker';
+import store from './store/store';
 
 function App() {
   return (

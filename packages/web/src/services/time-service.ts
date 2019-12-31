@@ -1,9 +1,9 @@
 import { endOfMonth, lastDayOfMonth, startOfMonth } from 'date-fns';
 
-export const createBudgetMonthRange = (month: string, year: string) => {
+export const createBudgetMonthRange = (newDate: Date) => {
   return {
-    monthStart: startOfMonth(new Date(`${month}, ${year}`)),
-    monthEnd: endOfMonth(new Date(`${month}, ${year}`)),
+    monthStart: startOfMonth(newDate),
+    monthEnd: endOfMonth(newDate),
   };
 };
 

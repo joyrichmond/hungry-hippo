@@ -7,6 +7,9 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-image: url('../greenGoldBackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 input {
@@ -20,3 +23,4 @@ input {
 @import './global-classes.scss';
 @import './spending-tracker.scss';
 @import './header.scss';
+@import '~react-datepicker/dist/react-datepicker.css';
