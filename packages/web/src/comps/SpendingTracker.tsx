@@ -7,6 +7,7 @@ import Category from '../models/Category';
 import Transaction from '../models/Transaction';
 import { request } from '../services/api-service';
 import { addBudget } from '../services/budget-service';
+import { getTotalSpent } from '../services/get-total-spent';
 import { budgetMonthRange } from '../services/time-service';
 import { addTransaction, filterTransactions } from '../services/transactions-service';
 import { AppState } from '../store/root';
@@ -65,25 +66,45 @@ const SpendingTracker: FC = () => {
 
   return (
     <div className="spending-tracker">
+      <h3>Spending Tracker</h3>
       {categories && budgets ? (
         [...Object.values(categories)].map(category => {
           const budget = getBudget(category._id as string);
           const budgetedAmount = budget && budget.amount;
+          const transactionHistory = filterTransactions(
+            transactions,
+            selectedMonth.monthStart,
+            selectedMonth.monthEnd,
+            category,
+          );
 
+          // return (
+          // <CategoryLine
+          //   category={category}
+          //   budgetedAmount={budgetedAmount}
+          //   transactionHistory={filterTransactions(
+          //     transactions,
+          //     selectedMonth.monthStart,
+          //     selectedMonth.monthEnd,
+          //     category,
+          //   )}
+          //   key={category._id as string}
+          //   setBudget={setBudget}
+          //   setTransaction={setTransaction}
+          // />
           return (
-            <CategoryLine
-              category={category}
-              budgetedAmount={budgetedAmount}
-              transactionHistory={filterTransactions(
-                transactions,
-                selectedMonth.monthStart,
-                selectedMonth.monthEnd,
-                category,
-              )}
-              key={category._id as string}
-              setBudget={setBudget}
-              setTransaction={setTransaction}
-            />
+            <div className="categoryLine">
+              <span className="categoryName">{category.name}</span>
+              <div className="budgetValues">
+                <span>
+                  {budgetedAmount
+                    ? budgetedAmount - getTotalSpent(transactionHistory)
+                    : ''}{' '}
+                  |
+                </span>
+                <span>{budgetedAmount}</span>
+              </div>
+            </div>
           );
         })
       ) : (

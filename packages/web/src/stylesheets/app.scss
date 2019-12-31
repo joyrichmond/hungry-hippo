@@ -10,6 +10,8 @@ body {
   background-image: url('../greenGoldBackground.png');
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0;
+  padding: 0;
 }
 
 input {
@@ -21,9 +23,36 @@ input {
 }
 
 .App {
-  width: 100%;
+  width: 100vw;
   margin: 0;
+  display: grid;
+  grid-template-areas:
+    'headerLayout headerLayout headerLayout headerLayout'
+    'masterSidebar dashboardView dashboardView spendingSidebar';
+  grid-gap: 2rem;
+
+  .header {
+    grid-area: headerLayout;
+  }
+
+  .masterSidebar {
+    grid-area: masterSidebar;
+    background-color: skyblue;
+    height: 50vh;
+  }
+
+  .dashboardView {
+    grid-area: dashboardView;
+    background-color: yellow;
+    height: 50vh;
+  }
+
+  .spendingSidebar {
+    grid-area: spendingSidebar;
+    max-width: 25vw;
+  }
 }
+
 .overlay {
   width: 100vw;
   height: 100vh;
