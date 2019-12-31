@@ -65,7 +65,6 @@ const SpendingTracker: FC = () => {
 
   return (
     <div className="spending-tracker">
-      <h2>Track My Spending</h2>
       {categories && budgets ? (
         [...Object.values(categories)].map(category => {
           const budget = getBudget(category._id as string);

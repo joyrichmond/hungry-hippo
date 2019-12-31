@@ -20,6 +20,21 @@ input {
   }
 }
 
+.App {
+  width: 100%;
+  margin: 0;
+}
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: $xlight;
+  filter: opacity(95%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9;
+}
+
 @import './global-classes.scss';
 @import './spending-tracker.scss';
 @import './header.scss';

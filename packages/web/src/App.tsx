@@ -13,10 +13,11 @@ import store from './store/store';
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
+      <div className="App flex-h flex-centered-h">
         <ToastContainer pauseOnFocusLoss />
         <Header />
         <AtAGlance />
+        <div className="overlay" />
         <SpendingTracker />
       </div>
     </Provider>
