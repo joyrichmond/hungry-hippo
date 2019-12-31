@@ -9,14 +9,22 @@ const postBudget = async (req: Request, res: Response) => {
 
   const col = getCollection('budgets');
 
-  const result = {
+  const newBudget = {
     effectiveDate,
     amount,
     categoryId,
-    _id: new ObjectID(),
   };
 
-  await col.insertOne(result);
+  await col.replaceOne(
+    { categoryId: { $eq: categoryId }, effectiveDate: { $eq: effectiveDate } },
+    newBudget,
+    { upsert: true },
+  );
+
+  const result = await col.findOne({
+    categoryId: { $eq: categoryId },
+    effectiveDate: { $eq: effectiveDate },
+  });
 
   res.json(result);
 };
