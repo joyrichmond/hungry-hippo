@@ -12,7 +12,7 @@ import { budgetMonthRange } from '../services/time-service';
 import { addTransaction, filterTransactions } from '../services/transactions-service';
 import { AppState } from '../store/root';
 import AddNewCategory from './spendingTracker/AddNewCategory';
-import CategoryLine from './spendingTracker/CategoryLine';
+//import CategoryLine from './spendingTracker/CategoryLine';
 import AddButton from './utils/AddButton';
 import LoadingView from './utils/LoadingView';
 
@@ -58,10 +58,8 @@ const SpendingTracker: FC = () => {
     }).then(item => dispatch({ type: 'ADD_BUDGET', item }));
   };
 
-  const setTransaction = (transaction: Omit<Transaction, '_id'>) => {
-    addTransaction(transaction).then(item =>
-      dispatch({ type: 'ADD_TRANSACTION', item }),
-    );
+  const setSelectedCategory = (categoryId: string) => {
+    dispatch({ type: 'SET_SELECTED_CATEGORY', item: categoryId });
   };
 
   return (
@@ -93,7 +91,10 @@ const SpendingTracker: FC = () => {
           //   setTransaction={setTransaction}
           // />
           return (
-            <div className="categoryLine">
+            <div
+              className="categoryLine"
+              onClick={() => setSelectedCategory(category._id!)}
+            >
               <span className="categoryName">{category.name}</span>
               <div className="budgetValues">
                 <span>

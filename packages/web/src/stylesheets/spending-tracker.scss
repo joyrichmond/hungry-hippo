@@ -14,7 +14,6 @@
 
   .add-button {
     width: 100%;
-    margin-top: 1.5rem;
   }
 }
 
@@ -73,6 +72,11 @@
   font-size: 1rem;
   padding: 0.75rem 1rem;
   background-color: $green-white;
+
+  &:hover {
+    background-color: $hover;
+    cursor: pointer;
+  }
 
   // :nth-of-type(1) {
   //   background-color: lightgray;

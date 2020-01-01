@@ -1,46 +1,46 @@
 import { format } from 'date-fns';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import Category from '../../models/Category';
 import Transaction from '../../models/Transaction';
+import { AppState } from '../../store/root';
 
 type Props = {
-  setCanUserRecordTransaction: any;
-  categoryId: string;
+  //setCanUserRecordTransaction: any;
+  category?: Category;
   setTransaction: (transaction: Omit<Transaction, '_id'>) => void;
 };
 
 const RecordTransaction: FC<Props> = ({
-  setCanUserRecordTransaction,
-  categoryId,
+  //setCanUserRecordTransaction,
+  category,
   setTransaction,
 }) => {
+  const [categoryName, setCategoryName] = useState('');
+
+  useEffect(() => setCategoryName((category && category!.name) || ''), [
+    category,
+  ]);
+
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
   const [vendor, setVendor] = useState('');
 
-  const createNewTransaction = () => {
-    if (date) {
-      return {
-        date: new Date(`${date}`),
-        amount: parseInt(amount),
-        vendor,
-        categoryId,
-      };
-    } else {
-      return {
-        date: new Date(),
-        amount: parseInt(amount),
-        vendor,
-        categoryId,
-      };
-    }
+  const createNewTransaction = (): Transaction => {
+    return {
+      date: date ? new Date(`${date}`) : new Date(),
+      amount: parseInt(amount),
+      vendor,
+      categoryId: category!._id as string,
+    };
   };
 
   const handleRecordTransaction = () => {
     const newTransaction = createNewTransaction();
-    setCanUserRecordTransaction(false);
+    //setCanUserRecordTransaction(false);
     setTransaction(newTransaction);
   };
 
@@ -55,6 +55,12 @@ const RecordTransaction: FC<Props> = ({
         value={date}
         placeholder={format(new Date(), 'MM-dd-yyyy')}
         autoFocus
+      />
+      <input
+        type="text"
+        onChange={e => setCategoryName(e.target.value)}
+        value={categoryName}
+        placeholder="category"
       />
       <input
         type="number"
