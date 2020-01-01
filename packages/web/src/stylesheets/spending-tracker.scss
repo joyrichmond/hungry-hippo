@@ -2,7 +2,7 @@
 
 .spending-tracker {
   color: $dark;
-  border: solid 1px $accent;
+  box-shadow: 2px 0 2px $accent;
 
   h3 {
     text-align: center;
@@ -17,74 +17,24 @@
   }
 }
 
-// .categoryLine {
-//   display: flex;
-//   justify-content: space-between;
-//   padding: 1rem 0;
-//   width: 50rem;
-//   align-items: center;
-//   border-bottom: solid 1px $primary;
-
-//   span,
-//   input,
-//   button {
-//     flex-basis: 5rem;
-//   }
-
-//   .budgetInfo > span {
-//     margin: 0.5rem;
-//   }
-
-//   .categoryName {
-//     font-family: $accent-font;
-//     font-size: 1.3rem;
-//     cursor: pointer;
-//     flex-basis: 10rem;
-
-//     &:hover {
-//       color: $hover;
-
-//       svg {
-//         display: inline-block;
-//       }
-//     }
-
-//     svg {
-//       display: none;
-//       margin: 0 1rem;
-//       font-size: 1rem;
-//     }
-//   }
-
-// input {
-//   padding: 0.5rem;
-//   font-size: 1.1rem;
-//   font-family: $primary-font;
-//   width: 5rem;
-// }
-// }
-
 .categoryLine {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid 1px $primary;
   font-size: 1rem;
   padding: 0.75rem 1rem;
   background-color: $green-white;
+  border: solid 1px $primary;
+  border-top: none;
 
   &:hover {
     background-color: $hover;
     cursor: pointer;
   }
 
-  // :nth-of-type(1) {
-  //   background-color: lightgray;
-  // }
+  &:active {
+    background-color: $primary-dark;
+  }
 }
-
-// .lineItemBudget {
-//   min-width: 20rem;
-// }
 
 @import './spending-history-accordion.scss';
