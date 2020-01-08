@@ -42,6 +42,15 @@ const RecordTransaction: FC<Props> = ({
     const newTransaction = createNewTransaction();
     //setCanUserRecordTransaction(false);
     setTransaction(newTransaction);
+    setDate('');
+    setAmount('');
+    setVendor('');
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) {
+      handleRecordTransaction();
+    }
   };
 
   return (
@@ -74,10 +83,11 @@ const RecordTransaction: FC<Props> = ({
             placeholder="vendor"
             onChange={e => setVendor(e.target.value)}
             value={vendor}
+            onKeyDown={e => handleKeyDown(e)}
           />
         </form>
       </div>
-      <button type="submit">
+      <button type="submit" onClick={handleRecordTransaction}>
         <FontAwesomeIcon icon={['fas', 'arrow-right']} />
       </button>
     </div>
