@@ -10,6 +10,8 @@ body {
   background-image: url('../greenGoldBackground.png');
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0;
+  padding: 0;
 }
 
 input {
@@ -20,7 +22,43 @@ input {
   }
 }
 
+.App {
+  width: 93vw;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-areas:
+    'headerLayout headerLayout headerLayout'
+    'masterSidebar dashboardView spendingSidebar';
+  grid-gap: $grid-gap;
+
+  .header {
+    grid-area: headerLayout;
+  }
+
+  .masterSidebar {
+    grid-area: masterSidebar;
+    background-color: skyblue;
+    height: 50vh;
+  }
+  .spendingSidebar {
+    grid-area: spendingSidebar;
+  }
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: $xlight;
+  filter: opacity(95%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9;
+}
+
 @import './global-classes.scss';
 @import './spending-tracker.scss';
 @import './header.scss';
+@import './dashboard-view.scss';
 @import '~react-datepicker/dist/react-datepicker.css';

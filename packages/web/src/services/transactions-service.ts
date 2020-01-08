@@ -1,5 +1,6 @@
 import Category from '../models/Category';
 import Transaction from '../models/Transaction';
+import { SelectedMonthState } from '../store/selectedMonth';
 import { TransactionsState } from '../store/transactions';
 import { request } from './api-service';
 import { budgetMonthRange } from './time-service';
@@ -17,23 +18,17 @@ export const addTransaction = (item: Transaction) =>
 
 export const filterTransactions = (
   transactions: TransactionsState | null,
-  budgetStart: Date,
-  budgetEnd: Date,
+  selectedMonth: SelectedMonthState,
   category: Category,
 ) => {
+  const { monthStart, monthEnd } = selectedMonth;
   const filtered =
     transactions &&
     Object.values(transactions).filter(
       transaction =>
         category._id === transaction.categoryId &&
-        budgetStart <= transaction.date &&
-        transaction.date <= budgetEnd,
+        monthStart <= transaction.date &&
+        transaction.date <= monthEnd,
     );
-  console.log('getTransactions', {
-    budgetMonthRange,
-    category,
-    transactions,
-    filtered,
-  });
   return filtered;
 };

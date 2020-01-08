@@ -16,14 +16,14 @@ const postBudget = async (req: Request, res: Response) => {
   };
 
   await col.replaceOne(
-    { categoryId: { $eq: categoryId }, effectiveDate: { $eq: effectiveDate } },
+    { categoryId, effectiveDate },
     newBudget,
     { upsert: true },
   );
 
   const result = await col.findOne({
-    categoryId: { $eq: categoryId },
-    effectiveDate: { $eq: effectiveDate },
+    categoryId,
+    effectiveDate,
   });
 
   res.json(result);

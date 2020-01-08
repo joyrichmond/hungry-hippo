@@ -7,11 +7,12 @@ import Category from '../models/Category';
 import Transaction from '../models/Transaction';
 import { request } from '../services/api-service';
 import { addBudget } from '../services/budget-service';
+import { getTotalSpent } from '../services/get-total-spent';
 import { budgetMonthRange } from '../services/time-service';
 import { addTransaction, filterTransactions } from '../services/transactions-service';
 import { AppState } from '../store/root';
 import AddNewCategory from './spendingTracker/AddNewCategory';
-import CategoryLine from './spendingTracker/CategoryLine';
+//import CategoryLine from './spendingTracker/CategoryLine';
 import AddButton from './utils/AddButton';
 import LoadingView from './utils/LoadingView';
 
@@ -57,34 +58,53 @@ const SpendingTracker: FC = () => {
     }).then(item => dispatch({ type: 'ADD_BUDGET', item }));
   };
 
-  const setTransaction = (transaction: Omit<Transaction, '_id'>) => {
-    addTransaction(transaction).then(item =>
-      dispatch({ type: 'ADD_TRANSACTION', item }),
-    );
+  const setSelectedCategory = (category: Category) => {
+    dispatch({ type: 'SET_SELECTED_CATEGORY', item: category });
   };
 
   return (
     <div className="spending-tracker">
-      <h2>Track My Spending</h2>
+      <h3>Spending Tracker</h3>
       {categories && budgets ? (
         [...Object.values(categories)].map(category => {
           const budget = getBudget(category._id as string);
           const budgetedAmount = budget && budget.amount;
+          const transactionHistory = filterTransactions(
+            transactions,
+            selectedMonth,
+            category,
+          );
 
+          // return (
+          // <CategoryLine
+          //   category={category}
+          //   budgetedAmount={budgetedAmount}
+          //   transactionHistory={filterTransactions(
+          //     transactions,
+          //     selectedMonth.monthStart,
+          //     selectedMonth.monthEnd,
+          //     category,
+          //   )}
+          //   key={category._id as string}
+          //   setBudget={setBudget}
+          //   setTransaction={setTransaction}
+          // />
           return (
-            <CategoryLine
-              category={category}
-              budgetedAmount={budgetedAmount}
-              transactionHistory={filterTransactions(
-                transactions,
-                selectedMonth.monthStart,
-                selectedMonth.monthEnd,
-                category,
-              )}
-              key={category._id as string}
-              setBudget={setBudget}
-              setTransaction={setTransaction}
-            />
+            <div
+              className="categoryLine"
+              onClick={() => setSelectedCategory(category)}
+            >
+              <span className="categoryName">{category.name}</span>
+              <div className="budgetValues">
+                <span>
+                  {budgetedAmount
+                    ? budgetedAmount - getTotalSpent(transactionHistory)
+                    : ''}{' '}
+                  |
+                </span>
+                <span>{budgetedAmount}</span>
+              </div>
+            </div>
           );
         })
       ) : (
