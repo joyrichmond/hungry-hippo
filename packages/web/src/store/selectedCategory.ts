@@ -1,10 +1,12 @@
+import Category from '../models/Category';
+
 type SelectedCategoryAction = {
-  item: string;
+  item: Category;
   type: 'SET_SELECTED_CATEGORY';
 };
 
 export const selectedCategoryReducer = (
-  state: string | null = null,
+  state: Category | null = null,
   action: SelectedCategoryAction,
 ) => {
   const { item, type } = action;

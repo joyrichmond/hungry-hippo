@@ -26,10 +26,11 @@ input {
   width: 93vw;
   margin: 0;
   display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas:
-    'headerLayout headerLayout headerLayout headerLayout'
-    'masterSidebar dashboardView dashboardView spendingSidebar';
-  grid-gap: 2rem;
+    'headerLayout headerLayout headerLayout'
+    'masterSidebar dashboardView spendingSidebar';
+  grid-gap: $grid-gap;
 
   .header {
     grid-area: headerLayout;
@@ -40,16 +41,8 @@ input {
     background-color: skyblue;
     height: 50vh;
   }
-
-  .dashboardView {
-    grid-area: dashboardView;
-    background-color: yellow;
-    height: 50vh;
-  }
-
   .spendingSidebar {
     grid-area: spendingSidebar;
-    max-width: 25vw;
   }
 }
 
@@ -67,4 +60,5 @@ input {
 @import './global-classes.scss';
 @import './spending-tracker.scss';
 @import './header.scss';
+@import './dashboard-view.scss';
 @import '~react-datepicker/dist/react-datepicker.css';

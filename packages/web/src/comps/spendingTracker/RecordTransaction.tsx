@@ -45,39 +45,42 @@ const RecordTransaction: FC<Props> = ({
   };
 
   return (
-    <form
-      className="recordTransaction input-container"
-      onSubmit={handleRecordTransaction}
-    >
-      <input
-        type="text"
-        onChange={e => setDate(e.target.value)}
-        value={date}
-        placeholder={format(new Date(), 'MM-dd-yyyy')}
-        autoFocus
-      />
-      <input
-        type="text"
-        onChange={e => setCategoryName(e.target.value)}
-        value={categoryName}
-        placeholder="category"
-      />
-      <input
-        type="number"
-        placeholder="amount"
-        onChange={e => setAmount(e.target.value)}
-        value={amount}
-      />
-      <input
-        type="text"
-        placeholder="vendor"
-        onChange={e => setVendor(e.target.value)}
-        value={vendor}
-      />
-      <button onClick={handleRecordTransaction}>
+    <div className="recordTransaction">
+      <div className="form-container">
+        <h3>Record Transaction</h3>
+        <form className="input-container" onSubmit={handleRecordTransaction}>
+          <input
+            type="text"
+            onChange={e => setDate(e.target.value)}
+            value={date}
+            placeholder={format(new Date(), 'MM-dd-yyyy')}
+            autoFocus
+          />
+          <input
+            type="text"
+            onChange={e => setCategoryName(e.target.value)}
+            value={categoryName}
+            placeholder="category"
+            required
+          />
+          <input
+            type="number"
+            placeholder="amount"
+            onChange={e => setAmount(e.target.value)}
+            value={amount}
+          />
+          <input
+            type="text"
+            placeholder="vendor"
+            onChange={e => setVendor(e.target.value)}
+            value={vendor}
+          />
+        </form>
+      </div>
+      <button type="submit">
         <FontAwesomeIcon icon={['fas', 'arrow-right']} />
       </button>
-    </form>
+    </div>
   );
 };
 

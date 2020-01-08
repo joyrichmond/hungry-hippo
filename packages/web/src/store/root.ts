@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import Category from '../models/Category';
 import { budgetsReducer, BudgetsState } from './budgets';
 import { categoriesReducer, CategoriesState } from './categories';
 import { selectedCategoryReducer } from './selectedCategory';
@@ -11,7 +12,7 @@ export type AppState = {
   categories: CategoriesState | null;
   transactions: TransactionsState | null;
   selectedMonth: SelectedMonthState;
-  selectedCategory: string | null;
+  selectedCategory: Category | null;
 };
 
 export const rootReducer = combineReducers<AppState>({

@@ -58,8 +58,8 @@ const SpendingTracker: FC = () => {
     }).then(item => dispatch({ type: 'ADD_BUDGET', item }));
   };
 
-  const setSelectedCategory = (categoryId: string) => {
-    dispatch({ type: 'SET_SELECTED_CATEGORY', item: categoryId });
+  const setSelectedCategory = (category: Category) => {
+    dispatch({ type: 'SET_SELECTED_CATEGORY', item: category });
   };
 
   return (
@@ -71,8 +71,7 @@ const SpendingTracker: FC = () => {
           const budgetedAmount = budget && budget.amount;
           const transactionHistory = filterTransactions(
             transactions,
-            selectedMonth.monthStart,
-            selectedMonth.monthEnd,
+            selectedMonth,
             category,
           );
 
@@ -93,7 +92,7 @@ const SpendingTracker: FC = () => {
           return (
             <div
               className="categoryLine"
-              onClick={() => setSelectedCategory(category._id!)}
+              onClick={() => setSelectedCategory(category)}
             >
               <span className="categoryName">{category.name}</span>
               <div className="budgetValues">

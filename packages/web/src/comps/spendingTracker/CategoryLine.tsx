@@ -6,7 +6,7 @@ import Category from '../../models/Category';
 import Transaction from '../../models/Transaction';
 import LineItemBudget from './LineItemBudget';
 import RecordTransaction from './RecordTransaction';
-import TransactionHistoryAccordion from './TransactionHistoryAccordion';
+import TransactionHistoryAccordion from './TransactionHistory';
 
 type Props = {
   category: Category;

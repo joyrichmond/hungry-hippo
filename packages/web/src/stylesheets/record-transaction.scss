@@ -1,0 +1,50 @@
+@import './style-variables.scss';
+
+.recordTransaction {
+  background-color: $gold;
+  margin: 1rem 0.5rem;
+  box-shadow: $small-shadow;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  .form-container {
+    h3 {
+      color: $forest-green;
+      padding: 1rem;
+      padding-bottom: 0;
+      margin: 0;
+    }
+
+    .input-container {
+      display: flex;
+      justify-content: stretch;
+      margin: 1rem 0.5rem;
+
+      input {
+        margin: 0;
+        border: 1px solid $medium-gold;
+        background-color: $light-gold;
+        color: $dark;
+        font-size: 0.8rem;
+      }
+
+      ::placeholder {
+        color: $primary;
+      }
+    }
+  }
+  button {
+    background-color: $light-gold;
+    color: $forest-green;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    height: inherit;
+    width: 2rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $hover-gold;
+    }
+  }
+}

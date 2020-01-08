@@ -2,16 +2,28 @@
 
 $primary-font: 'Montserrat', sans-serif;
 $accent-font: 'Alata', sans-serif;
+$important-font: 'Fjalla One', sans-serif;
 $primary: #4cc26b;
 $accent: #8cdea1;
 $accent-text: #b0e8be;
 $light: #bbe8ae;
 $xlight: #e6fae9;
 $dark: #005c17;
-$shadow: #005c17;
+$shadow: #007e10;
 $hover: #8cdea1;
 $green-white: #f2faf4;
 $primary-dark: #42a85d;
+$gold: #f0de1f;
+$medium-gold: #f0e46e;
+$light-gold: #faf196;
+$hover-gold: #f5ea78;
 
 $forest-green: #007e10;
 $mint-green: #bae4a7;
+
+$set-shadow: 2px 2px 4px $shadow;
+$small-shadow: 1px 1px 2px $shadow, 2px 2px 2px 3px $light;
+
+$page-section-width: 22vw;
+$double-page-section-width: 44vw;
+$grid-gap: 2vw;

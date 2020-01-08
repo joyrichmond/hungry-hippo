@@ -6,6 +6,7 @@ import Transaction from '../../models/Transaction';
 import { addTransaction } from '../../services/transactions-service';
 import { AppState } from '../../store/root';
 import RecordTransaction from './RecordTransaction';
+import TransactionHistory from './TransactionHistory';
 
 const DashboardView: FC = () => {
   const selectedCategory = useSelector(
@@ -28,10 +29,13 @@ const DashboardView: FC = () => {
       : undefined;
 
   return (
-    <RecordTransaction
-      category={getCategory(selectedCategory)}
-      setTransaction={setTransaction}
-    />
+    <div>
+      <RecordTransaction
+        category={selectedCategory || undefined}
+        setTransaction={setTransaction}
+      />
+      <TransactionHistory />
+    </div>
   );
 };
 
