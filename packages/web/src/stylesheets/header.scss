@@ -28,4 +28,28 @@
       background-color: $primary;
     }
   }
+
+  .datePicker {
+    align-self: flex-end;
+  }
+
+  .datePickerCustomInput {
+    height: 3.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0 2rem;
+    font-family: $accent-font;
+    background-color: $light;
+    text-transform: uppercase;
+    border: outset 1px;
+    cursor: pointer;
+    color: $dark;
+    min-width: 20rem;
+
+    &:active {
+      border: inset 1px;
+    }
+  }
 }
+
+@import '~react-datepicker/dist/react-datepicker.css';

@@ -8,7 +8,7 @@ import getTransactions from './handlers/getTransactions';
 import postBudget from './handlers/postBudget';
 import postCategory from './handlers/postCategory';
 import postTransaction from './handlers/postTransaction';
-import { connect } from './services/mongoService';
+import { connect, getCollection } from './services/mongoService';
 
 config();
 
