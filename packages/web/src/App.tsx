@@ -5,7 +5,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
-import AtAGlance from './comps/AtAGlance';
 import Header from './comps/Header';
 import MasterSidebar from './comps/MasterSidebar';
 import SpendingTracker from './comps/SpendingTracker';
