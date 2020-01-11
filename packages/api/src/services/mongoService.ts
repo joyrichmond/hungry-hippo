@@ -17,7 +17,7 @@ export const connect = () => getClient().connect();
 
 const getDb = () => getClient().db(process.env.DB_NAME);
 
-export const getCollection = (name: string) => {
+export const getCollection = <T = any>(name: string) => {
   const db = getDb();
-  return db.collection(name);
+  return db.collection<T>(name);
 };
