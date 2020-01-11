@@ -10,7 +10,9 @@ import logout from './handlers/logout';
 import postBudget from './handlers/postBudget';
 import postCategory from './handlers/postCategory';
 import postTransaction from './handlers/postTransaction';
-import authenticate from './middleware/authenticate';
+import putBudget from './handlers/putBudget';
+import signup from './handlers/signup';
+import authenticateToken from './middleware/authenticateToken';
 import { connect } from './services/mongoService';
 
 config();
@@ -33,9 +35,10 @@ const main = async () => {
 
   app.use('/api', router);
 
+  router.post('/signup', signup);
   router.post('/login', login);
 
-  router.use(authenticate);
+  router.use(authenticateToken);
 
   router.get('/categories', getCategories);
   router.get('/budgets', getBudgets);
@@ -44,6 +47,8 @@ const main = async () => {
   router.post('/categories', postCategory);
   router.post('/budgets', postBudget);
   router.post('/transactions', postTransaction);
+
+  router.put('/budgets/:id', putBudget);
 
   router.post('/logout', logout);
 

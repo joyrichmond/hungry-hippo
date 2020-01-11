@@ -1,10 +1,15 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+
+import Budget from '../models/Budget';
+import { Request } from '../models/Request';
 import { getCollection } from '../services/mongoService';
 
 const getBudgets = async (req: Request, res: Response) => {
-  const col = getCollection('budgets');
+  const col = getCollection<Budget>('budgets');
 
-  const result = await col.find({}).toArray();
+  const userId = req.user!._id!;
+
+  const result = await col.find({ userId }).toArray();
 
   res.json(result);
 };

@@ -1,25 +1,29 @@
-import { ObjectID } from 'bson';
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import { ObjectID } from 'mongodb';
 
+import { Request } from '../models/Request';
 import Transaction from '../models/Transaction';
 import { getCollection } from '../services/mongoService';
 
 const postTransaction = async (req: Request, res: Response) => {
   const { date, amount, vendor, categoryId } = req.body as Transaction;
 
-  const col = getCollection('transactions');
+  const userId = req.user!._id!;
 
-  const result = {
+  const col = getCollection<Transaction>('transactions');
+
+  const newTransaction = {
     date,
     amount,
     vendor,
     categoryId,
+    userId,
     _id: new ObjectID(),
   };
 
-  await col.insertOne(result);
+  await col.insertOne(newTransaction);
 
-  res.json(result);
+  res.json(newTransaction);
 };
 
 export default postTransaction;

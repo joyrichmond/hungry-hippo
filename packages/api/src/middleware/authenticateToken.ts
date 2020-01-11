@@ -6,7 +6,7 @@ import Token from '../models/Token';
 import User from '../models/User';
 import { getCollection } from '../services/mongoService';
 
-const authenticate: RequestHandler = async (req: Request, res, next) => {
+const authenticateToken: RequestHandler = async (req: Request, res, next) => {
   const tokenId = req.headers.authorization;
 
   if (!tokenId) {
@@ -35,4 +35,4 @@ const authenticate: RequestHandler = async (req: Request, res, next) => {
   next();
 };
 
-export default authenticate;
+export default authenticateToken;
