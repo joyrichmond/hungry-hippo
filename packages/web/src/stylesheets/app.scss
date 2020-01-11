@@ -35,15 +35,6 @@ input {
   .header {
     grid-area: headerLayout;
   }
-
-  .masterSidebar {
-    grid-area: masterSidebar;
-    background-color: skyblue;
-    height: 50vh;
-  }
-  .spendingSidebar {
-    grid-area: spendingSidebar;
-  }
 }
 
 .overlay {
@@ -65,3 +56,4 @@ input {
 @import './spending-tracker.scss';
 @import './header.scss';
 @import './dashboard-view.scss';
+@import './master-sidebar.scss';

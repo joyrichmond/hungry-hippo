@@ -7,7 +7,7 @@ const MasterSidebar: FC = () => {
     <div className="masterSidebar">
       <div className="selectInterval">
         <h3>Select Interval</h3>
-        <select>
+        <select className="displayInput">
           <option value="Month" selected>
             Month
           </option>
