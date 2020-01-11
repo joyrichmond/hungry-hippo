@@ -3,27 +3,31 @@ import React, { FC, useState } from 'react';
 import SingleEntryModal from './SingleEntryModal';
 
 type Props = {
-  label: string;
   summaryType: string;
+  label: string;
+  nameOf: string;
 };
 
-const SingleEntrySummaryInput: FC<Props> = ({ label, summaryType }) => {
+const SingleEntrySummaryInput: FC<Props> = ({ summaryType, label, nameOf }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [name, setName] = useState(summaryType);
-  const [amount, setAmount] = useState('null');
+  const [name, setName] = useState(nameOf);
+  const [amount, setAmount] = useState('Please enter amount');
 
   return (
     <div>
+      <h3>{summaryType}</h3>
       <button onClick={e => setIsModalOpen(!isModalOpen)}>{amount}</button>
-      <SingleEntryModal
-        isOpen={isModalOpen}
-        label={label}
-        summaryType={summaryType}
-        setName={setName}
-        setAmount={setAmount}
-        amount={amount}
-        name={name}
-      />
+      {isModalOpen && (
+        <SingleEntryModal
+          label={label}
+          nameOf={nameOf}
+          setName={setName}
+          setAmount={setAmount}
+          setIsOpen={setIsModalOpen}
+          amount={amount}
+          name={name}
+        />
+      )}
     </div>
   );
 };

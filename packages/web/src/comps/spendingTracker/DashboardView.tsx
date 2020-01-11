@@ -29,7 +29,7 @@ const DashboardView: FC = () => {
       : undefined;
 
   return (
-    <div>
+    <div className="dashboardView">
       <RecordTransaction
         category={selectedCategory || undefined}
         setTransaction={setTransaction}

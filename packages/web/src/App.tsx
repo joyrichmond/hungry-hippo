@@ -7,9 +7,9 @@ import { ToastContainer } from 'react-toastify';
 
 import AtAGlance from './comps/AtAGlance';
 import Header from './comps/Header';
+import MasterSidebar from './comps/MasterSidebar';
 import SpendingTracker from './comps/SpendingTracker';
 import DashboardView from './comps/spendingTracker/DashboardView';
-import RecordTransaction from './comps/spendingTracker/RecordTransaction';
 import store from './store/store';
 
 function App() {
@@ -19,13 +19,9 @@ function App() {
         <ToastContainer pauseOnFocusLoss />
         <div className="overlay" />
         <Header />
-        <div className="masterSidebar"></div>
-        <div className="dashboardView">
-          <DashboardView />
-        </div>
-        <div className="spendingSidebar">
-          <SpendingTracker />
-        </div>
+        <MasterSidebar />
+        <DashboardView />
+        <SpendingTracker />
       </div>
     </Provider>
   );
