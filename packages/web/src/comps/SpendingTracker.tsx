@@ -57,7 +57,8 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions }) => {
   };
 
   const setSelectedCategory = (category: Category) => {
-    dispatch({ type: 'SET_SELECTED_CATEGORY', item: category });
+    const item = selectedCategory && selectedCategory._id === category._id ? null : category;
+    dispatch({ type: 'SET_SELECTED_CATEGORY', item });
   };
 
   return (
