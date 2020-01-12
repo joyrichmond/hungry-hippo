@@ -57,8 +57,11 @@ input {
   z-index: -9;
 }
 
+.logo {
+  max-height: 5rem;
+}
+
 @import './global-classes.scss';
 @import './spending-tracker.scss';
 @import './header.scss';
 @import './dashboard-view.scss';
-@import '~react-datepicker/dist/react-datepicker.css';
