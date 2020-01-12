@@ -19,25 +19,27 @@
   .add-button {
     width: 100%;
   }
-}
+  .categoryLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    background-color: $green-white;
+    border: solid 1px $primary;
+    border-top: none;
 
-.categoryLine {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1rem;
-  padding: 0.75rem 1rem;
-  background-color: $green-white;
-  border: solid 1px $primary;
-  border-top: none;
+    &:hover {
+      background-color: $hover;
+      cursor: pointer;
+    }
 
-  &:hover {
-    background-color: $hover;
-    cursor: pointer;
+    &:active {
+      background-color: $primary-dark;
+    }
   }
-
-  &:active {
-    background-color: $primary-dark;
+  .selectedCategory {
+    background-color: $hover;
   }
 }
 

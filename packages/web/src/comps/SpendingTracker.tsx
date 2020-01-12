@@ -23,7 +23,7 @@ type Props = {
 
 const SpendingTracker: FC<Props> = ({ categories, budgets, transactions }) => {
   const dispatch = useDispatch();
-  const selectedMonth = useSelector((state: AppState) => state.selectedMonth);
+  const { selectedMonth, selectedCategory } = useSelector(({ selectedMonth, selectedCategory }: AppState) => ({ selectedMonth, selectedCategory }));
 
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
   const isLoading = !!categories || !!budgets;
@@ -70,7 +70,11 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions }) => {
           const transactionHistory = filterTransactions(transactions, selectedMonth, category);
 
           return (
-            <div className="categoryLine" onClick={() => setSelectedCategory(category)} key={category.name}>
+            <div
+              className={`categoryLine ${selectedCategory && selectedCategory._id === category._id ? 'selectedCategory' : ''}`}
+              onClick={() => setSelectedCategory(category)}
+              key={category.name}
+            >
               <span className="categoryName">{category.name}</span>
               <div className="budgetValues">
                 <span>{budgetedAmount ? budgetedAmount - getTotalSpent(transactionHistory) : ''} |</span>
