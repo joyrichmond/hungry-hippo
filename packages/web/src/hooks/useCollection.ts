@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Budget from '../models/Budget';
@@ -9,20 +9,21 @@ import { getBudgets } from '../services/budget-service';
 import { getTransactions } from '../services/transactions-service';
 import { AppState } from '../store/root';
 
-const useCollection = <T>(
-  type: string,
-  selectorFn: (state: AppState) => { [key: string]: T } | null,
-  fetchFn: () => Promise<T[]>,
-) => {
+const useCollection = <T>(type: string, selectorFn: (state: AppState) => { [key: string]: T } | null, fetchFn: () => Promise<T[]>) => {
+  const [isFetching, setIsFetching] = useState(false);
   const dispatch = useDispatch();
   const collection = useSelector(selectorFn);
 
   useEffect(() => {
-    if (collection) {
+    if (isFetching || collection) {
       return;
     }
 
-    fetchFn().then(res => dispatch({ type, collection: res }));
+    setIsFetching(true);
+
+    fetchFn()
+      .then(res => dispatch({ type, collection: res }))
+      .finally(() => setIsFetching(false));
   }, [collection, dispatch, fetchFn, type]);
 
   return collection;

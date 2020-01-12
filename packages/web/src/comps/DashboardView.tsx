@@ -1,16 +1,23 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useCategories } from '../hooks/useCollection';
 import Transaction from '../models/Transaction';
 import { addTransaction } from '../services/transactions-service';
+import { BudgetsState } from '../store/budgets';
+import { CategoriesState } from '../store/categories';
 import { AppState } from '../store/root';
+import { TransactionsState } from '../store/transactions';
 import RecordTransaction from './spendingTracker/RecordTransaction';
 import TransactionHistory from './spendingTracker/TransactionHistory';
 
-const DashboardView: FC = () => {
+type Props = {
+  categories?: CategoriesState | null;
+  budgets?: BudgetsState | null;
+  transactions?: TransactionsState | null | undefined;
+};
+
+const DashboardView: FC<Props> = ({ categories, budgets, transactions }) => {
   const selectedCategory = useSelector((state: AppState) => state.selectedCategory);
-  const categories = useCategories();
   const dispatch = useDispatch();
 
   const setTransaction = (transaction: Omit<Transaction, '_id'>) => {
