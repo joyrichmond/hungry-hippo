@@ -54,10 +54,9 @@ const signup = async (req: Request, res: Response) => {
   await tokens.insertOne(newToken);
 
   const result = {
-    username,
     firstname,
     lastname,
-    newToken,
+    token: newToken._id,
   };
 
   res.json(result);

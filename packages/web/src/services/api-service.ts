@@ -15,7 +15,7 @@ export const request = async (
   const token = getToken();
 
   if (token) {
-    headers.set('authorization', `Bearer ${token}`);
+    headers.set('authorization', token);
   }
 
   const fetchOptions = {

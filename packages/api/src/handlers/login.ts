@@ -37,7 +37,13 @@ const login = async (req: Request, res: Response) => {
 
   await tokens.insertOne(token);
 
-  res.json(token._id);
+  const result = {
+    firstname: user.firstname,
+    lastname: user.lastname,
+    token: token._id,
+  };
+
+  res.json(result);
 };
 
 export default login;

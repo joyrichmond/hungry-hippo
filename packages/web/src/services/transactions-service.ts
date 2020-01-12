@@ -3,7 +3,6 @@ import Transaction from '../models/Transaction';
 import { SelectedMonthState } from '../store/selectedMonth';
 import { TransactionsState } from '../store/transactions';
 import { request } from './api-service';
-import { budgetMonthRange } from './time-service';
 
 export const getTransactions = () =>
   request('transactions').then((res: any[]) =>
