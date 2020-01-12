@@ -82,7 +82,7 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions }) => {
       ) : (
         <LoadingView isLoading={isLoading} />
       )}
-      {isUserAddingCategory && <AddNewCategory addNewCategory={addNewCategory} />}
+      {isUserAddingCategory && <AddNewCategory addNewCategory={addNewCategory} isOpen={isUserAddingCategory} setIsOpen={setIsUserAddingCategory} />}
       <AddButton handleClick={() => setIsUserAddingCategory(true)} />
     </div>
   );
