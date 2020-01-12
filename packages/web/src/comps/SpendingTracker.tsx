@@ -70,7 +70,7 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions }) => {
           const transactionHistory = filterTransactions(transactions, selectedMonth, category);
 
           return (
-            <div className="categoryLine" onClick={() => setSelectedCategory(category)}>
+            <div className="categoryLine" onClick={() => setSelectedCategory(category)} key={category.name}>
               <span className="categoryName">{category.name}</span>
               <div className="budgetValues">
                 <span>{budgetedAmount ? budgetedAmount - getTotalSpent(transactionHistory) : ''} |</span>
