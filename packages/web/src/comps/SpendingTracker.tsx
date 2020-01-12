@@ -36,11 +36,7 @@ const SpendingTracker: FC = () => {
     const sortedBudgets =
       budgets &&
       Object.values(budgets)
-        .filter(
-          budget =>
-            categoryId === (budget.categoryId as string) &&
-            budget.effectiveDate <= selectedMonth.monthEnd,
-        )
+        .filter(budget => categoryId === (budget.categoryId as string) && budget.effectiveDate <= selectedMonth.monthEnd)
         .sort((a, b) => compareDesc(a.effectiveDate, b.effectiveDate));
 
     if (sortedBudgets !== null && sortedBudgets.length) {
@@ -55,7 +51,7 @@ const SpendingTracker: FC = () => {
       effectiveDate: selectedMonth.monthStart,
       amount: amount,
       categoryId: categoryId,
-    }).then(item => dispatch({ type: 'ADD_BUDGET', item }));
+    }).then(item => dispatch({ type: 'SET_BUDGET', item }));
   };
 
   const setSelectedCategory = (category: Category) => {
@@ -69,11 +65,7 @@ const SpendingTracker: FC = () => {
         [...Object.values(categories)].map(category => {
           const budget = getBudget(category._id as string);
           const budgetedAmount = budget && budget.amount;
-          const transactionHistory = filterTransactions(
-            transactions,
-            selectedMonth,
-            category,
-          );
+          const transactionHistory = filterTransactions(transactions, selectedMonth, category);
 
           // return (
           // <CategoryLine
@@ -90,18 +82,10 @@ const SpendingTracker: FC = () => {
           //   setTransaction={setTransaction}
           // />
           return (
-            <div
-              className="categoryLine"
-              onClick={() => setSelectedCategory(category)}
-            >
+            <div className="categoryLine" onClick={() => setSelectedCategory(category)}>
               <span className="categoryName">{category.name}</span>
               <div className="budgetValues">
-                <span>
-                  {budgetedAmount
-                    ? budgetedAmount - getTotalSpent(transactionHistory)
-                    : ''}{' '}
-                  |
-                </span>
+                <span>{budgetedAmount ? budgetedAmount - getTotalSpent(transactionHistory) : ''} |</span>
                 <span>{budgetedAmount}</span>
               </div>
             </div>
@@ -110,9 +94,7 @@ const SpendingTracker: FC = () => {
       ) : (
         <LoadingView isLoading={isLoading} />
       )}
-      {isUserAddingCategory && (
-        <AddNewCategory addNewCategory={addNewCategory} />
-      )}
+      {isUserAddingCategory && <AddNewCategory addNewCategory={addNewCategory} />}
       <AddButton handleClick={() => setIsUserAddingCategory(true)} />
     </div>
   );

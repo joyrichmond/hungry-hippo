@@ -1,5 +1,5 @@
-import { ObjectID } from 'bson';
 import { Request, Response } from 'express';
+import { ObjectID } from 'mongodb';
 
 import Token from '../models/Token';
 import User from '../models/User';
