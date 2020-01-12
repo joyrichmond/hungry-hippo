@@ -61,7 +61,7 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions }) => {
   };
 
   return (
-    <div className="spending-tracker">
+    <div className="spending-tracker spendingSidebar">
       <h3>Spending Tracker</h3>
       {categories && budgets ? (
         [...Object.values(categories)].map(category => {

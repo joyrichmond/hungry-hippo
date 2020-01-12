@@ -1,5 +1,9 @@
 @import './style-variables.scss';
 
+.spendingSidebar {
+  grid-area: spendingSidebar;
+}
+
 .spending-tracker {
   color: $dark;
   box-shadow: $set-shadow;

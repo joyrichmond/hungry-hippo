@@ -1,0 +1,24 @@
+@import './style-variables.scss';
+
+.masterSidebar {
+  grid-area: masterSidebar;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: $green-white;
+  box-shadow: $set-shadow;
+  border-radius: 10px;
+
+  h3 {
+  }
+  select,
+  button {
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #bbb;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: $primary-font;
+  }
+}
