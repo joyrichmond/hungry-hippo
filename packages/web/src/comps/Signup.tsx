@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -23,7 +23,8 @@ const Signup: FC = () => {
 
   const doPasswordsMatch = password === verifyPassword;
 
-  const submitUserInfo = () => {
+  const submitUserInfo = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const newUser: NewUser = {
       username,
       firstname,
@@ -32,12 +33,16 @@ const Signup: FC = () => {
       verifyPassword,
     };
     request('signup', { method: 'POST', body: newUser })
-      .then(item => dispatch({ type: 'SET_AUTH', item }))
+      .then(item => {
+        localStorage.setItem('_t', item.token);
+        dispatch({ type: 'RESET' });
+        dispatch({ type: 'SET_AUTH', item });
+      })
       .catch(err => toast.error(err.message));
   };
 
   return (
-    <form className="signup" onSubmit={submitUserInfo}>
+    <form className="signup" onSubmit={e => submitUserInfo(e)}>
       <h3>Signup</h3>
       <input type="text" placeholder="username" onChange={e => setUsername(e.target.value)} value={username} required />
       <input type="text" placeholder="first name" onChange={e => setFirstname(e.target.value)} value={firstname} required />

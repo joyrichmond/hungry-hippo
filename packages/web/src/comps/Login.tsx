@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -10,21 +10,27 @@ const Login: FC = () => {
 
   const dispatch = useDispatch();
 
-  const attemptLogin = () => {
+  const attemptLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const payload = {
       username,
       password,
     };
 
     request('login', { method: 'POST', body: payload })
-      .then(item => dispatch({ type: 'SET_AUTH', item }))
+      .then(item => {
+        localStorage.setItem('_t', item.token);
+        dispatch({ type: 'RESET' });
+        dispatch({ type: 'SET_AUTH', item });
+      })
       .catch(err => toast.error(err.message));
   };
 
   return (
-    <form className="login" onSubmit={attemptLogin}>
+    <form className="login" onSubmit={e => attemptLogin(e)}>
       <input type="text" placeholder="username" onChange={e => setUsername(e.target.value)} value={username} required />
       <input type="text" placeholder="password" onChange={e => setPassword(e.target.value)} value={password} required />
+      <button type="submit">Login</button>
     </form>
   );
 };

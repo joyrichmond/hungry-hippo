@@ -4,6 +4,7 @@ import express, { Router } from 'express';
 
 import getBudgets from './handlers/getBudgets';
 import getCategories from './handlers/getCategories';
+import getLogin from './handlers/getLogin';
 import getTransactions from './handlers/getTransactions';
 import login from './handlers/login';
 import logout from './handlers/logout';
@@ -40,6 +41,7 @@ const main = async () => {
 
   router.use(authenticateToken);
 
+  router.get('/login', getLogin);
   router.get('/categories', getCategories);
   router.get('/budgets', getBudgets);
   router.get('/transactions', getTransactions);
