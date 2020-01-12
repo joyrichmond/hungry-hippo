@@ -5,6 +5,7 @@ import { useBudgets, useCategories, useTransactions } from '../hooks/useCollecti
 import { AppState } from '../store/root';
 import DashboardView from './DashboardView';
 import Gateway from './Gateway';
+import MasterSidebar from './MasterSidebar';
 import SpendingTracker from './SpendingTracker';
 
 const MainPanel: FC = () => {
@@ -16,7 +17,9 @@ const MainPanel: FC = () => {
   if (auth) {
     return (
       <>
-        <div className="masterSidebar"></div>
+        <div className="masterSidebar">
+          <MasterSidebar />
+        </div>
         <div className="dashboardView">
           <DashboardView categories={categories} budgets={budgets} transactions={transactions} />
         </div>
