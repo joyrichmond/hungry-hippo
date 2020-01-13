@@ -26,12 +26,12 @@ const DashboardView: FC<Props> = ({ categories, budgets, transactions, dispatch,
     addTransaction(transaction).then(item => dispatch({ type: 'ADD_TRANSACTION', item }));
   };
 
-  const getCategory = (categoryId: string | null) => (categories ? Object.values(categories).find(category => categoryId === category._id) || undefined : undefined);
+  // const getCategory = (categoryId: string | null) => (categories ? Object.values(categories).find(category => categoryId === category._id) || undefined : undefined);
 
   return (
     <div>
       <RecordTransaction category={selectedCategory || undefined} setTransaction={setTransaction} />
-      <TransactionHistory transactions={transactions} category={selectedCategory || undefined} month={selectedMonth} />
+      {selectedCategory && <TransactionHistory transactions={transactions} budgets={budgets} category={selectedCategory || undefined} month={selectedMonth} />}
     </div>
   );
 };

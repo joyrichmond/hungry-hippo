@@ -31,7 +31,16 @@ export const getActiveBudget = (categoryId: string, budgets: BudgetsState, month
   return undefined;
 };
 
-export const calculateRemainingBudget = (categoryId: string, budgets: BudgetsState, month: SelectedMonthState, transactionHistory: Transaction[] | null | undefined) => {
+export const calculateRemainingBudget = (
+  categoryId: string,
+  budgets: BudgetsState | null | undefined,
+  month: SelectedMonthState,
+  transactionHistory: Transaction[] | null | undefined,
+) => {
+  if (!budgets) {
+    return {};
+  }
+
   const budget = getActiveBudget(categoryId, budgets!, month!);
 
   const budgetedAmount = budget && budget.amount;

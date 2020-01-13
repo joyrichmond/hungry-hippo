@@ -1,11 +1,8 @@
-import { compareDesc } from 'date-fns';
 import React, { Dispatch, FC, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Category from '../models/Category';
 import { request } from '../services/api-service';
 import { addBudget, calculateRemainingBudget, getActiveBudget } from '../services/budget-service';
-import { getTotalSpent } from '../services/get-total-spent';
 import { filterTransactions } from '../services/transactions-service';
 import { BudgetsState } from '../store/budgets';
 import { CategoriesState } from '../store/categories';
