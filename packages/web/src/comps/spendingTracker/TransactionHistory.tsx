@@ -1,18 +1,12 @@
 import { format, isSameMonth } from 'date-fns';
 import React, { FC, FormEvent, useState } from 'react';
-import { useSelector } from 'react-redux';
 
-import { useTransactions } from '../../hooks/useCollection';
-import Budget from '../../models/Budget';
 import Category from '../../models/Category';
-import Transaction from '../../models/Transaction';
 import { addBudget, calculateRemainingBudget, createBudget, getActiveBudget, updateBudget } from '../../services/budget-service';
 import { filterTransactions } from '../../services/transactions-service';
 import { BudgetsState } from '../../store/budgets';
-import { AppState } from '../../store/root';
 import { SelectedMonthState } from '../../store/selectedMonth';
 import { TransactionsState } from '../../store/transactions';
-import SingleEntrySummaryInput from '../utils/SingleEntrySummaryInput';
 
 type Props = {
   transactions: TransactionsState | null | undefined;
