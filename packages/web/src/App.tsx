@@ -2,23 +2,25 @@ import './stylesheets/app.scss';
 import './fontawesome';
 
 import React from 'react';
-import { Provider } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
+import Gateway from './comps/Gateway';
 import Header from './comps/Header';
+import Login from './comps/Login';
 import MainPanel from './comps/MainPanel';
-import store from './store/store';
+import { AppState } from './store/root';
 
 function App() {
+  const auth = useSelector((state: AppState) => state.auth);
+
   return (
-    <Provider store={store}>
-      <div className="App">
-        <ToastContainer pauseOnFocusLoss />
-        <div className="overlay" />
-        <Header />
-        <MainPanel />
-      </div>
-    </Provider>
+    <div className="App">
+      <ToastContainer pauseOnFocusLoss />
+      <div className="overlay" />
+      <Header />
+      {auth ? <MainPanel /> : <Gateway />}
+    </div>
   );
 }
 

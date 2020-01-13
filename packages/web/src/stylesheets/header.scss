@@ -9,24 +9,10 @@
   width: 100%;
 
   span {
-    color: $accent-text;
-    font-size: 4rem;
-    font-family: $accent-font;
-    text-transform: uppercase;
-    padding: 0.5rem 1rem;
-  }
-
-  select {
-    padding: 0.5rem 1.5rem;
-    font-family: $primary-font;
     color: $dark;
-    margin: 1rem;
-    font-size: 1.2rem;
-    border-radius: 5px;
-
-    option:active {
-      background-color: $primary;
-    }
+    font-size: 1rem;
+    font-family: $accent-font;
+    padding: 0.5rem 1rem;
   }
 
   .datePicker {

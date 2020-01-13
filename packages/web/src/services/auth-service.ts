@@ -44,3 +44,8 @@ export const submitNewUserInfo = (newUser: NewUser) =>
       dispatch({ type: 'SET_AUTH', item });
     })
     .catch(err => toast.error(err.message));
+
+export const logout = () => {
+  localStorage.removeItem('_t');
+  dispatch({ type: 'RESET' });
+};
