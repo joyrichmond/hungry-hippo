@@ -13,7 +13,17 @@ const putBudget = async (req: Request, res: Response) => {
 
   const col = getCollection<Budget>('budgets');
 
-  const result = await col.updateOne({ _id: id, userId }, { amount });
+  const budget = await col.findOne({ _id: id });
+  if (!budget) {
+    return res.sendStatus(404);
+  }
+
+  if (budget.userId.toHexString() !== userId.toHexString()) {
+    return res.sendStatus(403);
+  }
+
+  await col.updateOne({ _id: id }, { $set: { amount } });
+  const result = { ...budget, amount };
 
   res.json(result);
 };
