@@ -3,26 +3,29 @@ import React, { FC, useState } from 'react';
 import MultiEntryModal from './MultiEntryModal';
 
 type Props = {
-  label: string;
-  summaryType: string;
+  summaryType: string | null;
+  nameByGeneric: string | null;
 };
 
-const MultiEntrySummaryInput: FC<Props> = ({ label, summaryType }) => {
+const MultiEntrySummaryInput: FC<Props> = ({ summaryType, nameByGeneric }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [name, setName] = useState(summaryType);
+  const [nameByUser, setNameByUser] = useState(nameByGeneric || '');
   const [amount, setAmount] = useState('null');
 
   return (
     <div>
-      <button onClick={e => setIsModalOpen(!isModalOpen)}>{amount}</button>
+      <button className="flex-h flex-space-between" onClick={e => setIsModalOpen(!isModalOpen)}>
+        <span>{summaryType}</span>
+        <span>{amount}</span>
+      </button>
       <MultiEntryModal
         isOpen={isModalOpen}
-        label={label}
-        summaryType={summaryType}
-        setName={setName}
+        setIsOpen={setIsModalOpen}
+        summaryType={summaryType || ''}
+        setName={setNameByUser}
         setAmount={setAmount}
         amount={amount}
-        name={name}
+        nameByUser={nameByUser}
       />
     </div>
   );
