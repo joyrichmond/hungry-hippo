@@ -1,15 +1,16 @@
 import { compareDesc } from 'date-fns';
-import React, { FC, useState } from 'react';
+import React, { Dispatch, FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Category from '../models/Category';
 import { request } from '../services/api-service';
-import { addBudget } from '../services/budget-service';
+import { addBudget, getActiveBudget } from '../services/budget-service';
 import { getTotalSpent } from '../services/get-total-spent';
 import { filterTransactions } from '../services/transactions-service';
 import { BudgetsState } from '../store/budgets';
 import { CategoriesState } from '../store/categories';
 import { AppState } from '../store/root';
+import { SelectedMonthState } from '../store/selectedMonth';
 import { TransactionsState } from '../store/transactions';
 import AddNewCategory from './spendingTracker/AddNewCategory';
 import AddButton from './utils/AddButton';
@@ -19,12 +20,12 @@ type Props = {
   categories?: CategoriesState | null;
   budgets?: BudgetsState | null;
   transactions?: TransactionsState | null;
+  dispatch: Dispatch<any>;
+  selectedMonth: SelectedMonthState;
+  selectedCategory: Category | null;
 };
 
-const SpendingTracker: FC<Props> = ({ categories, budgets, transactions }) => {
-  const dispatch = useDispatch();
-  const { selectedMonth, selectedCategory } = useSelector(({ selectedMonth, selectedCategory }: AppState) => ({ selectedMonth, selectedCategory }));
-
+const SpendingTracker: FC<Props> = ({ categories, budgets, transactions, dispatch, selectedMonth, selectedCategory }) => {
   const [isUserAddingCategory, setIsUserAddingCategory] = useState(false);
   const isLoading = !!categories || !!budgets;
 
@@ -33,20 +34,6 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions }) => {
       method: 'POST',
       body: { name: categoryName },
     }).then(item => dispatch({ type: 'ADD_CATEGORY', item }));
-
-  const getBudget = (categoryId: string) => {
-    const sortedBudgets =
-      budgets &&
-      Object.values(budgets)
-        .filter(budget => categoryId === (budget.categoryId as string) && budget.effectiveDate <= selectedMonth.monthEnd)
-        .sort((a, b) => compareDesc(a.effectiveDate, b.effectiveDate));
-
-    if (sortedBudgets && sortedBudgets.length) {
-      return sortedBudgets[0];
-    }
-
-    return undefined;
-  };
 
   const setBudget = (amount: number, categoryId: string) => {
     addBudget({
@@ -66,7 +53,7 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions }) => {
       <h3>Spending Tracker</h3>
       {categories && budgets ? (
         [...Object.values(categories)].map(category => {
-          const budget = getBudget(category._id as string);
+          const budget = getActiveBudget(category._id!, budgets!, selectedMonth!);
           const budgetedAmount = budget && budget.amount;
           const transactionHistory = filterTransactions(transactions, selectedMonth, category);
 

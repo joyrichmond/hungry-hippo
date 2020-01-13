@@ -8,17 +8,14 @@ import { filterTransactions } from '../../services/transactions-service';
 import { AppState } from '../../store/root';
 
 const TransactionHistory: FC = () => {
-  const category = useSelector((state: AppState) => state.selectedCategory);
-  const selectedMonth = useSelector((state: AppState) => state.selectedMonth);
-  const transactions = useTransactions();
-
-  const transactionHistory =
-    transactions &&
-    category &&
-    filterTransactions(transactions, selectedMonth, category);
+  const transactionHistory = transactions && category && filterTransactions(transactions, selectedMonth, category);
 
   return (
     <div className="transactionHistory">
+      <div className="budgetInfo">
+        <span></span>
+        <span></span>
+      </div>
       {transactionHistory &&
         transactionHistory.map((transaction, i) => (
           <div key={i} className="transactionLine">
