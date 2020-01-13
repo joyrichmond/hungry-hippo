@@ -1,4 +1,4 @@
-import { getTotalSpent } from './get-total-spent';
+import { getTotalSpent } from './transactions-service';
 import { mockTransactions } from '../mock-data/mockTransactions';
 
 test('sums amount in transaction history', () => {
