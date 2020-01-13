@@ -19,3 +19,8 @@ export const filterTransactions = (transactions: TransactionsState | null | unde
     transactions && Object.values(transactions).filter(transaction => category._id === transaction.categoryId && monthStart <= transaction.date && transaction.date <= monthEnd);
   return filtered;
 };
+
+export const getTotalSpent = (transactionHistory: Transaction[] | null | undefined) => {
+  const summate = (sum: number, transaction: Transaction) => sum + transaction.amount;
+  return transactionHistory && Object.values(transactionHistory).reduce(summate, 0);
+};

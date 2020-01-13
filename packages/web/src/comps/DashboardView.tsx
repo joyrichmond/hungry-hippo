@@ -31,7 +31,7 @@ const DashboardView: FC<Props> = ({ categories, budgets, transactions, dispatch,
   return (
     <div>
       <RecordTransaction category={selectedCategory || undefined} setTransaction={setTransaction} />
-      <TransactionHistory />
+      <TransactionHistory transactions={transactions} category={selectedCategory || undefined} month={selectedMonth} />
     </div>
   );
 };

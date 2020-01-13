@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Category from '../models/Category';
 import { request } from '../services/api-service';
-import { addBudget, getActiveBudget } from '../services/budget-service';
+import { addBudget, calculateRemainingBudget, getActiveBudget } from '../services/budget-service';
 import { getTotalSpent } from '../services/get-total-spent';
 import { filterTransactions } from '../services/transactions-service';
 import { BudgetsState } from '../store/budgets';
@@ -53,9 +53,8 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions, dispatc
       <h3>Spending Tracker</h3>
       {categories && budgets ? (
         [...Object.values(categories)].map(category => {
-          const budget = getActiveBudget(category._id!, budgets!, selectedMonth!);
-          const budgetedAmount = budget && budget.amount;
           const transactionHistory = filterTransactions(transactions, selectedMonth, category);
+          const { budgetedAmount, remainingBudget } = calculateRemainingBudget(category._id!, budgets, selectedMonth, transactionHistory);
 
           return (
             <div
@@ -65,7 +64,7 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions, dispatc
             >
               <span className="categoryName">{category.name}</span>
               <div className="budgetValues">
-                <span>{budgetedAmount ? budgetedAmount - getTotalSpent(transactionHistory) : ''} |</span>
+                <span>{budgetedAmount ? remainingBudget : ''} |</span>
                 <span>{budgetedAmount}</span>
               </div>
             </div>
