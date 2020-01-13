@@ -56,7 +56,6 @@ const TransactionHistory: FC<Props> = ({ transactions, budgets, category, month 
             <button type="submit">Update</button>
           </form>
         )}
-        {/* <SingleEntrySummaryInput summaryType={''} label={'New Budget'} existingAmount={budgetedAmount} onModalSubmit={() => {}} /> */}
       </div>
       {transactionHistory &&
         transactionHistory.map((transaction, i) => (
