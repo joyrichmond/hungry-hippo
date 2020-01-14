@@ -1,6 +1,8 @@
 import React, { FC, forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Auth from '../models/Auth';
 import { logout } from '../services/auth-service';
 import { createBudgetMonthRange } from '../services/time-service';
@@ -31,10 +33,14 @@ const Header: FC<Props> = ({ dispatch, auth }) => {
       </div>
       {auth && (
         <div className="profile">
+          <FontAwesomeIcon icon={['fas', 'user']} />
           <span>Hi {auth?.firstname}!</span>
-          <button onClick={logout}>Logout</button>
         </div>
       )}
+      <button className="logout" onClick={logout}>
+        <FontAwesomeIcon icon={['fas', 'door-open']} />
+        <span>Logout</span>
+      </button>
     </div>
   );
 };

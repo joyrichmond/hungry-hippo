@@ -5,36 +5,77 @@
   color: $dark;
   box-shadow: 0 2px 4px $forest-green;
   font-size: 1.1rem;
-  padding: 1rem;
   width: 100%;
-  align-items: flex-end;
+  align-items: center;
+
+  img {
+    margin: 1rem;
+  }
 
   span {
     color: $dark;
-    font-size: 1rem;
-    font-family: $accent-font;
+    font-size: 1.3rem;
+    font-family: $important-font;
     padding: 0.5rem 1rem;
+    margin: 1rem;
   }
 
   .datePicker {
-    align-self: flex-end;
+    flex-grow: 2;
+    text-align: center;
   }
 
   .datePickerCustomInput {
     height: 3.5rem;
     text-align: center;
     font-size: 1.5rem;
-    padding: 0 2rem;
+    padding: 0 8rem;
     font-family: $accent-font;
-    background-color: $light;
+    background-color: $green-white;
     text-transform: uppercase;
     border: outset 1px;
     cursor: pointer;
     color: $dark;
     min-width: 20rem;
+    box-shadow: $set-shadow;
 
     &:active {
       border: inset 1px;
+    }
+  }
+
+  .profile {
+    align-self: flex-end;
+    margin: 1rem 0;
+    span {
+      margin: 0 1rem 0 0;
+    }
+    svg {
+      font-size: 1.5rem;
+    }
+  }
+
+  .logout {
+    align-self: stretch;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+    justify-content: space-around;
+    border-radius: 0 5px 5px 0;
+    font-family: $primary-font;
+
+    svg {
+      font-size: 1.5rem;
+    }
+
+    span {
+      font-size: 0.7rem;
+      margin: 0;
+      padding: 0.3rem;
+      color: white;
+      font-family: $primary-font;
     }
   }
 }
