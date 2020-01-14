@@ -1,16 +1,17 @@
 import React, { FC, forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
-import { useDispatch, useSelector } from 'react-redux';
 
+import Auth from '../models/Auth';
 import { logout } from '../services/auth-service';
 import { createBudgetMonthRange } from '../services/time-service';
-import { AppState } from '../store/root';
 import DatePickerCustomInput from './utils/DatePickerCustomInput';
 
-const Header: FC = () => {
-  const dispatch = useDispatch();
-  const auth = useSelector(({ auth }: AppState) => auth);
+type Props = {
+  dispatch: any;
+  auth: Auth | null;
+};
 
+const Header: FC<Props> = ({ dispatch, auth }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const updateMonth = (newMonth: Date) => {

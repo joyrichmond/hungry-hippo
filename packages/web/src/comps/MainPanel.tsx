@@ -12,13 +12,15 @@ const MainPanel: FC = () => {
   const categories = useCategories();
   const transactions = useTransactions();
   const budgets = useBudgets();
+  const auth = useSelector(({ auth }: AppState) => auth);
+
   const selectedMonth = useSelector((state: AppState) => state.selectedMonth);
   const selectedCategory = useSelector((state: AppState) => state.selectedCategory);
   const dispatch = useDispatch();
 
   return (
     <>
-      <Header />
+      <Header dispatch={dispatch} auth={auth} />
       <div className="masterSidebar">
         <MasterSidebar />
       </div>
