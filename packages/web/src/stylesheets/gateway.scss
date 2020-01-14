@@ -1,0 +1,56 @@
+@import './style-variables.scss';
+
+.gateway {
+  display: flex;
+  justify-content: center;
+
+  form {
+    padding: 1rem 4rem;
+    margin: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $green-white;
+    box-shadow: $set-shadow;
+    border-radius: 10px;
+
+    h3,
+    input,
+    button {
+      margin: 0.5rem;
+      padding: 0.5rem;
+      background-color: $green-white;
+      font-family: $primary-font;
+      color: $dark;
+      border-radius: 5px;
+      border-color: $accent;
+    }
+
+    h3 {
+      font-family: $accent-font;
+      color: $dark;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      background-color: inherit;
+    }
+
+    input {
+      background-color: $xlight;
+    }
+
+    button {
+      background-color: $primary;
+      color: white;
+      text-transform: uppercase;
+      box-shadow: $button-shadow;
+      border: none;
+
+      &:hover {
+        background-color: $hover;
+      }
+
+      &:active {
+        box-shadow: none;
+      }
+    }
+  }
+}

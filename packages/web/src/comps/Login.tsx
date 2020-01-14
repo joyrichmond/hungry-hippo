@@ -14,6 +14,7 @@ const Login: FC = () => {
 
   return (
     <form className="login" onSubmit={e => attemptLogin(e)}>
+      <h3>Login</h3>
       <input type="text" placeholder="username" onChange={e => setUsername(e.target.value)} value={username} required />
       <input type="text" placeholder="password" onChange={e => setPassword(e.target.value)} value={password} required />
       <button type="submit">Login</button>
