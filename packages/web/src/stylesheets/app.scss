@@ -25,6 +25,11 @@ button {
   padding: 0.5rem;
   font-family: $primary-font;
   border-radius: 5px;
+
+  &:hover {
+    background-color: $hover;
+    cursor: pointer;
+  }
 }
 
 input {

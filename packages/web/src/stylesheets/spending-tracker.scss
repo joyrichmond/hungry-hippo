@@ -41,7 +41,6 @@
     align-items: center;
     flex: 1 1 100%;
     font-size: 1rem;
-    padding: 0.75rem 1rem;
     background-color: $green-white;
     border: solid 1px $primary;
     border-top: none;
@@ -53,6 +52,30 @@
 
     &:active {
       background-color: $primary-dark;
+    }
+
+    .categoryName {
+      padding: 0.75rem 1rem;
+    }
+    .budgetValues {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      span:nth-of-type(1) {
+        font-family: $important-font;
+        font-size: 1rem;
+        margin: 0 0.5rem;
+      }
+      span:nth-of-type(2) {
+        font-family: $important-font;
+        font-size: 1.5rem;
+        background-color: $gold;
+        box-shadow: -2px 0 4px $gold;
+        padding: 0.25rem 0.5rem;
+        min-width: 3rem;
+        text-align: right;
+      }
     }
   }
   .selectedCategory {

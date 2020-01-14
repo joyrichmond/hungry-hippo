@@ -63,8 +63,8 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions, dispatc
             >
               <span className="categoryName">{category.name}</span>
               <div className="budgetValues">
-                <span>{budgetedAmount ? remainingBudget : ''} |</span>
-                <span>{budgetedAmount}</span>
+                <span>{remainingBudget}</span>
+                <span>{budgetedAmount || 0}</span>
               </div>
             </div>
           );
