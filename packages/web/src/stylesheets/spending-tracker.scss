@@ -27,8 +27,12 @@
     }
 
     &:active {
-      border: inset 1px $primary-dark;
+      border: inset px $primary-dark;
     }
+  }
+
+  .cancel-button:hover {
+    background-color: $hover-gold;
   }
 
   .categoryLine {

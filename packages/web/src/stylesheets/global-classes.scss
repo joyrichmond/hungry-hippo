@@ -64,6 +64,14 @@ input {
     outline: none;
   }
 }
+.cancel-button {
+  background-color: $gold;
+  color: $dark;
+
+  &:hover {
+    background-color: $medium-gold;
+  }
+}
 
 .displayInput {
   background-color: inherit;
