@@ -8,9 +8,20 @@
   background-color: $green-white;
   box-shadow: $set-shadow;
   border-radius: 10px;
+  color: $dark;
+  position: relative;
 
   h3 {
+    margin: 0.5rem 0;
   }
+
+  .selectInterval {
+    border-radius: 5px;
+    padding: 0.5rem;
+    box-shadow: $small-shadow;
+    margin: 0.5rem 0 2rem 0;
+  }
+
   select,
   button {
     padding: 0.5rem;
@@ -20,5 +31,9 @@
     font-size: 1rem;
     font-weight: 700;
     font-family: $primary-font;
+    color: $dark;
+    cursor: pointer;
   }
 }
+
+@import './summary-card.scss';

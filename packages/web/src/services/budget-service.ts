@@ -67,6 +67,6 @@ export const calculateRemainingBudget = (
 
   const budgetedAmount = budget && budget.amount;
 
-  const remainingBudget = budgetedAmount ? budgetedAmount - (getTotalSpent(transactionHistory) || 0) : '';
+  const remainingBudget = budgetedAmount ? budgetedAmount - (getTotalSpent(transactionHistory) || 0) : getTotalSpent(transactionHistory);
   return { budgetedAmount, remainingBudget };
 };

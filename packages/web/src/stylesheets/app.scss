@@ -12,10 +12,31 @@ body {
   background-size: cover;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: $primary;
+  color: white;
+  text-transform: uppercase;
+  box-shadow: $button-shadow;
+  border: none;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  font-family: $primary-font;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: $hover;
+    cursor: pointer;
+  }
 }
 
 input {
   outline: none;
+  font-family: $primary-font;
+  font-size: 0.8rem;
+  padding: 0.5rem;
 
   &:focus {
     outline: none;
@@ -54,6 +75,8 @@ input {
 
 @import './global-classes.scss';
 @import './spending-tracker.scss';
+@import './add-new-category.scss';
 @import './header.scss';
 @import './dashboard-view.scss';
 @import './master-sidebar.scss';
+@import './gateway.scss';

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import MultiEntrySummaryInput from './utils/MultiEntrySummaryInput';
 import SingleEntrySummaryInput from './utils/SingleEntrySummaryInput';
+import SummaryCard from './utils/SummaryCard';
 
 const MasterSidebar: FC = () => {
   return (
@@ -15,12 +15,12 @@ const MasterSidebar: FC = () => {
           <option value="Year">Year</option>
         </select>
       </div>
-      <MultiEntrySummaryInput summaryType="Current Balance" nameByGeneric="bank name" />
-      <MultiEntrySummaryInput summaryType="Projected Income" nameByGeneric="income source" />
-      <MultiEntrySummaryInput summaryType="Card Balance" nameByGeneric="card name" />
-      <MultiEntrySummaryInput summaryType="Dedicated Expense" nameByGeneric="expense name" />
-      <MultiEntrySummaryInput summaryType="Investments" nameByGeneric="investment name" />
-      <MultiEntrySummaryInput summaryType="Savings" nameByGeneric="bank name" />
+      <SummaryCard summaryType="Current Balance" nameByGeneric="bank name" />
+      <SummaryCard summaryType="Projected Income" nameByGeneric="income source" />
+      <SummaryCard summaryType="Card Balance" nameByGeneric="card name" />
+      <SummaryCard summaryType="Dedicated Expenses" nameByGeneric="expense name" />
+      <SummaryCard summaryType="Investments" nameByGeneric="investment name" />
+      <SummaryCard summaryType="Savings" nameByGeneric="bank name" />
     </div>
   );
 };

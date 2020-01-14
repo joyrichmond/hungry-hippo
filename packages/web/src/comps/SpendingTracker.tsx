@@ -1,5 +1,7 @@
 import React, { Dispatch, FC, useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Category from '../models/Category';
 import { request } from '../services/api-service';
 import { addBudget, calculateRemainingBudget, getActiveBudget } from '../services/budget-service';
@@ -61,8 +63,8 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions, dispatc
             >
               <span className="categoryName">{category.name}</span>
               <div className="budgetValues">
-                <span>{budgetedAmount ? remainingBudget : ''} |</span>
-                <span>{budgetedAmount}</span>
+                <span>{remainingBudget}</span>
+                <span>{budgetedAmount || 0}</span>
               </div>
             </div>
           );
@@ -71,7 +73,9 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions, dispatc
         <LoadingView isLoading={isLoading} />
       )}
       {isUserAddingCategory && <AddNewCategory addNewCategory={addNewCategory} isOpen={isUserAddingCategory} setIsOpen={setIsUserAddingCategory} />}
-      <AddButton handleClick={() => setIsUserAddingCategory(true)} />
+      <button className={`${isUserAddingCategory && 'cancel-button'}`} onClick={() => setIsUserAddingCategory(!isUserAddingCategory)}>
+        {isUserAddingCategory ? 'Cancel Add Category' : <FontAwesomeIcon icon={['fas', 'plus']} />}
+      </button>
     </div>
   );
 };

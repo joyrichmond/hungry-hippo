@@ -1,0 +1,146 @@
+@import './style-variables.scss';
+
+.transactionHistory {
+  padding: 0;
+  color: $dark;
+  border-radius: 10px;
+  box-shadow: $small-shadow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .transactionHistoryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    h3 {
+      display: inline-block;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0.5rem;
+    }
+
+    span {
+      font-size: 1.1rem;
+      font-family: $important-font;
+      padding: 0.5rem 2rem;
+      text-transform: uppercase;
+      background-color: $light;
+      border-radius: 5px;
+      margin-right: 0.5rem;
+      border-left: solid 10px $dark;
+    }
+  }
+
+  .budgetInfo {
+    background-color: #4cc26b;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: relative;
+
+    span {
+      padding: 0 0.5rem;
+      font-size: 0.7rem;
+    }
+
+    button {
+      background-color: $primary-dark;
+      color: white;
+      border: outset 2px white;
+      margin: 0;
+      box-shadow: none;
+      border: none;
+      border-radius: 0 0 10px 0;
+      width: 50%;
+      text-align: right;
+
+      &:hover {
+        background-color: $hover;
+      }
+    }
+
+    .importantAmount {
+      font-family: $important-font;
+      font-size: 1.5rem;
+    }
+
+    .emptyAmount {
+      font-family: $important-font;
+      font-size: 0.8rem;
+    }
+  }
+  .transactionRecord {
+    margin: 1rem;
+    width: 85%;
+    position: relative;
+
+    h4 {
+      margin: 0;
+    }
+
+    .transactionLine {
+      border-bottom: solid 1px $dark;
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      width: 100%;
+
+      &:last-of-type {
+        border: none;
+      }
+
+      span {
+        min-width: 5rem;
+      }
+      span:last-of-type {
+        flex-grow: 2;
+      }
+    }
+  }
+
+  .submitChangeBudget {
+    padding: 0.5rem;
+    border-radius: 0 0 5px 5px;
+    position: absolute;
+    right: 0;
+    bottom: -3rem;
+    display: flex;
+    justify-content: flex-end;
+    background-color: $light;
+
+    label {
+      padding: 0.5rem;
+      background-color: white;
+      font-size: 0.8rem;
+      border-right: solid 1px #eee;
+      border-radius: 5px 0 0 5px;
+      color: #ccc;
+    }
+
+    input,
+    label {
+      flex-grow: 2;
+      border: none;
+      color: $primary;
+      box-shadow: 1px 1px 2px #999, 3px 3px 4px #bbb;
+    }
+
+    button {
+      margin: 0;
+      width: inherit;
+      height: inherit;
+      padding: 0.5rem;
+      border-radius: 0 5px 5px 0;
+      border: none;
+      background-color: $primary;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
@@ -6,7 +7,7 @@ type Props = {
 };
 
 const AddButton: FC<Props> = ({ handleClick }) => (
-  <button className="fill-button add-button" onClick={handleClick}>
+  <button onClick={handleClick}>
     <FontAwesomeIcon icon={['fas', 'plus']} />
   </button>
 );

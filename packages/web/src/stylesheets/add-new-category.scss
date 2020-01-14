@@ -1,0 +1,20 @@
+@import './style-variables.scss';
+
+.addNewCategory {
+  padding: 0.75rem 0.25rem;
+  margin: 0;
+  input {
+    flex-grow: 2;
+    border: none;
+    box-shadow: 1px 1px 2px #999, 3px 3px 4px #bbb;
+    border-radius: 5px 0 0 5px;
+  }
+  button {
+    margin: 0;
+    width: inherit;
+    height: inherit;
+    padding: 0.5rem;
+    border-radius: 0 5px 5px 0;
+    border: none;
+  }
+}

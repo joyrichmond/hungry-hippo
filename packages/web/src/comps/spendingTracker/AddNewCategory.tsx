@@ -1,5 +1,7 @@
 import React, { FC, FormEvent, useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 type Props = {
   addNewCategory: (categoryName: string) => Promise<any>;
   isOpen: boolean;
@@ -19,9 +21,11 @@ const AddNewCategory: FC<Props> = ({ addNewCategory, isOpen, setIsOpen }) => {
   return (
     <>
       {isOpen && (
-        <form className="flex-h input-container" onSubmit={handleSubmitNewCategory}>
-          <input type="text" placeholder="Enter a category name" onChange={e => setCategoryInput(e.target.value)} value={categoryInput} required />
-          <button className="fill-button">Add</button>
+        <form className="flex-h addNewCategory input-button-group" onSubmit={handleSubmitNewCategory}>
+          <input type="text" placeholder="new category" onChange={e => setCategoryInput(e.target.value)} value={categoryInput} required />
+          <button>
+            <FontAwesomeIcon icon={['fas', 'arrow-right']} />
+          </button>
         </form>
       )}
     </>

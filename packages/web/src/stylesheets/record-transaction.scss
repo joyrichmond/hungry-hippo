@@ -2,7 +2,7 @@
 
 .recordTransaction {
   background-color: $gold;
-  margin: 1rem 0.5rem;
+  margin: 1rem 0;
   box-shadow: $small-shadow;
   border-radius: 10px;
   display: flex;
@@ -41,6 +41,7 @@
     border-radius: 0 10px 10px 0;
     height: inherit;
     width: 2rem;
+    margin: 0;
 
     &:hover {
       cursor: pointer;
