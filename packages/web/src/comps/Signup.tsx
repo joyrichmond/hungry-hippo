@@ -31,8 +31,8 @@ const Signup: FC = () => {
       <input type="text" placeholder="username" onChange={e => setUsername(e.target.value)} value={username} required />
       <input type="text" placeholder="first name" onChange={e => setFirstname(e.target.value)} value={firstname} required />
       <input type="text" placeholder="last name" onChange={e => setLastname(e.target.value)} value={lastname} required />
-      <input type="text" placeholder="password" onChange={e => setPassword(e.target.value)} value={password} required />
-      <input type="text" placeholder="verify password" onChange={e => setVerifyPassword(e.target.value)} value={verifyPassword} required />
+      <input type="password" placeholder="password" onChange={e => setPassword(e.target.value)} value={password} required />
+      <input type="password" placeholder="verify password" onChange={e => setVerifyPassword(e.target.value)} value={verifyPassword} required />
       <button type="submit" disabled={!doPasswordsMatch}>
         Signup
       </button>
