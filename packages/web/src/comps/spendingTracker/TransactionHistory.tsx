@@ -1,6 +1,8 @@
 import { format, isSameMonth } from 'date-fns';
 import React, { FC, FormEvent, useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Category from '../../models/Category';
 import { addBudget, calculateRemainingBudget, createBudget, getActiveBudget, updateBudget } from '../../services/budget-service';
 import { filterTransactions } from '../../services/transactions-service';
@@ -41,24 +43,40 @@ const TransactionHistory: FC<Props> = ({ transactions, budgets, category, month 
 
   return (
     <div className="transactionHistory">
+      <div className="transactionHistoryHeader">
+        <h3>Transaction History</h3>
+        <span>{category!.name}</span>
+      </div>
       <div className="budgetInfo">
-        <span>{remainingBudget || '0'}</span>
-        <button onClick={e => setCanUserChangeBudget(!canUserChangeBudget)}>{budgetedAmount || 'Please set a budget amount'}</button>
+        <div>
+          <span className="importantAmount">${remainingBudget || '0'}</span>
+          <span>(Remaining Budget)</span>
+        </div>
+        <button onClick={e => setCanUserChangeBudget(!canUserChangeBudget)}>
+          <span>(Budgeted Amount)</span>
+          <span className="importantAmount">${budgetedAmount || 'Please set a budget amount'}</span>
+        </button>
         {canUserChangeBudget && (
           <form className="submitChangeBudget" onSubmit={e => submitChangeBudget(e)}>
+            <label>new budget</label>
             <input onChange={e => setAmount(Number(e.target.value))} value={amount} placeholder="Please set a budget amount" />
-            <button type="submit">Update</button>
+            <button type="submit">
+              <FontAwesomeIcon icon={['fas', 'arrow-right']} />
+            </button>
           </form>
         )}
       </div>
-      {transactionHistory &&
-        transactionHistory.map((transaction, i) => (
-          <div key={i} className="transactionLine">
-            <div>{format(transaction.date, 'MM/dd')}</div>
-            <div>${transaction.amount}</div>
-            <div>{transaction.vendor}</div>
-          </div>
-        ))}
+      <div className="transactionRecord">
+        <h4>Transactions</h4>
+        {transactionHistory &&
+          transactionHistory.map((transaction, i) => (
+            <div key={i} className="transactionLine">
+              <span>{format(transaction.date, 'MM/dd')}</span>
+              <span>${transaction.amount}</span>
+              <span>{transaction.vendor}</span>
+            </div>
+          ))}
+      </div>
     </div>
   );
 };

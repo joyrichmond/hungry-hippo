@@ -1,4 +1,3 @@
-@import './record-transaction.scss';
 @import './style-variables.scss';
 
 .dashboardView {
@@ -9,4 +8,8 @@
   align-items: center;
   border-radius: 10px;
   box-shadow: $set-shadow;
+  padding: 0 1rem;
 }
+
+@import './record-transaction.scss';
+@import './transaction-history.scss';

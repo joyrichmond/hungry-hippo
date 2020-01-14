@@ -21,9 +21,7 @@ const RecordTransaction: FC<Props> = ({
 }) => {
   const [categoryName, setCategoryName] = useState('');
 
-  useEffect(() => setCategoryName((category && category!.name) || ''), [
-    category,
-  ]);
+  useEffect(() => setCategoryName((category && category!.name) || ''), [category]);
 
   const [date, setDate] = useState('');
   const [amount, setAmount] = useState('');
@@ -58,36 +56,13 @@ const RecordTransaction: FC<Props> = ({
       <div className="form-container">
         <h3>Record Transaction</h3>
         <form className="input-container" onSubmit={handleRecordTransaction}>
-          <input
-            type="text"
-            onChange={e => setDate(e.target.value)}
-            value={date}
-            placeholder={format(new Date(), 'MM-dd-yyyy')}
-            autoFocus
-          />
-          <input
-            type="text"
-            onChange={e => setCategoryName(e.target.value)}
-            value={categoryName}
-            placeholder="category"
-            required
-          />
-          <input
-            type="number"
-            placeholder="amount"
-            onChange={e => setAmount(e.target.value)}
-            value={amount}
-          />
-          <input
-            type="text"
-            placeholder="vendor"
-            onChange={e => setVendor(e.target.value)}
-            value={vendor}
-            onKeyDown={e => handleKeyDown(e)}
-          />
+          <input type="text" onChange={e => setDate(e.target.value)} value={date} placeholder={format(new Date(), 'MM-dd-yyyy')} autoFocus />
+          <input type="text" onChange={e => setCategoryName(e.target.value)} value={categoryName} placeholder="category" required />
+          <input type="number" placeholder="amount" onChange={e => setAmount(e.target.value)} value={amount} required />
+          <input type="text" placeholder="vendor" onChange={e => setVendor(e.target.value)} value={vendor} onKeyDown={e => handleKeyDown(e)} />
         </form>
       </div>
-      <button type="submit" onClick={handleRecordTransaction}>
+      <button type="submit">
         <FontAwesomeIcon icon={['fas', 'arrow-right']} />
       </button>
     </div>

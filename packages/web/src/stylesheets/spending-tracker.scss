@@ -70,11 +70,10 @@
       span:nth-of-type(2) {
         font-family: $important-font;
         font-size: 1.5rem;
-        background-color: $gold;
-        box-shadow: -2px 0 4px $gold;
         padding: 0.25rem 0.5rem;
         min-width: 3rem;
         text-align: right;
+        border-left: solid 1px $primary;
       }
     }
   }
@@ -82,5 +81,3 @@
     background-color: $hover;
   }
 }
-
-@import './spending-history-accordion.scss';

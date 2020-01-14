@@ -24,16 +24,7 @@ const MainPanel: FC = () => {
       <div className="masterSidebar">
         <MasterSidebar />
       </div>
-      <div className="dashboardView">
-        <DashboardView
-          categories={categories}
-          budgets={budgets}
-          transactions={transactions}
-          dispatch={dispatch}
-          selectedMonth={selectedMonth}
-          selectedCategory={selectedCategory}
-        />
-      </div>
+      <DashboardView categories={categories} budgets={budgets} transactions={transactions} dispatch={dispatch} selectedMonth={selectedMonth} selectedCategory={selectedCategory} />
       <div className="spendingSidebar">
         <SpendingTracker
           categories={categories}

@@ -26,10 +26,8 @@ const DashboardView: FC<Props> = ({ categories, budgets, transactions, dispatch,
     addTransaction(transaction).then(item => dispatch({ type: 'ADD_TRANSACTION', item }));
   };
 
-  // const getCategory = (categoryId: string | null) => (categories ? Object.values(categories).find(category => categoryId === category._id) || undefined : undefined);
-
   return (
-    <div>
+    <div className="dashboardView">
       <RecordTransaction category={selectedCategory || undefined} setTransaction={setTransaction} />
       {selectedCategory && <TransactionHistory transactions={transactions} budgets={budgets} category={selectedCategory || undefined} month={selectedMonth} />}
     </div>
