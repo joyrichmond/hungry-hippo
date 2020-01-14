@@ -1,5 +1,7 @@
 import React, { Dispatch, FC, useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Category from '../models/Category';
 import { request } from '../services/api-service';
 import { addBudget, calculateRemainingBudget, getActiveBudget } from '../services/budget-service';
@@ -71,7 +73,9 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions, dispatc
         <LoadingView isLoading={isLoading} />
       )}
       {isUserAddingCategory && <AddNewCategory addNewCategory={addNewCategory} isOpen={isUserAddingCategory} setIsOpen={setIsUserAddingCategory} />}
-      <AddButton handleClick={() => setIsUserAddingCategory(true)} />
+      <button onClick={() => setIsUserAddingCategory(true)}>
+        <FontAwesomeIcon icon={['fas', 'plus']} />
+      </button>
     </div>
   );
 };
