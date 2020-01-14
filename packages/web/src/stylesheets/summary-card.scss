@@ -1,0 +1,81 @@
+@import './style-variables.scss';
+
+.summaryCard {
+  background-color: $xlight;
+  display: flex;
+  flex-direction: column;
+  margin: 0.25rem;
+  border: solid 1px $light;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: $subtle-shadow;
+
+  &:hover {
+    background-color: $hover;
+  }
+  &:active {
+    box-shadow: none;
+  }
+
+  .summaryCardHeader {
+    background-color: $primary;
+    padding: 0.5rem;
+    color: white;
+    font-weight: 700;
+
+    &:hover {
+      background-color: $primary-dark;
+    }
+  }
+
+  .summaryAmount {
+    padding: 0.5rem;
+  }
+  .summaryModal {
+    background-color: $green-white;
+    position: absolute;
+    z-index: 9;
+    display: flex;
+    align-items: stretch;
+    right: -18.75rem;
+    border: solid 1px #bbb;
+    border-radius: 0 10px 10px 0;
+
+    .summaryForm {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    button:nth-of-type(1) {
+      box-shadow: none;
+      height: inherit;
+      align-self: flex-start;
+      padding: 1rem;
+      border-radius: 5px;
+      background-color: inherit;
+      margin: 0;
+
+      &:hover {
+        background-color: $hover;
+      }
+    }
+
+    button:nth-of-type(2) {
+      margin: 0;
+      width: inherit;
+      padding: 0.5rem;
+      border-radius: 0 5px 5px 0;
+      border: none;
+      height: inherit;
+
+      &:hover {
+        background-color: $hover;
+      }
+    }
+
+    input {
+      margin: 0.25rem;
+    }
+  }
+}

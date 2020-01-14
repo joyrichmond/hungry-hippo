@@ -21,9 +21,7 @@ const MainPanel: FC = () => {
   return (
     <>
       <Header dispatch={dispatch} auth={auth} />
-      <div className="masterSidebar">
-        <MasterSidebar />
-      </div>
+      <MasterSidebar />
       <DashboardView categories={categories} budgets={budgets} transactions={transactions} dispatch={dispatch} selectedMonth={selectedMonth} selectedCategory={selectedCategory} />
       <div className="spendingSidebar">
         <SpendingTracker
