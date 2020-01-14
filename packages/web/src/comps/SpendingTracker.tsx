@@ -73,7 +73,7 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions, dispatc
         <LoadingView isLoading={isLoading} />
       )}
       {isUserAddingCategory && <AddNewCategory addNewCategory={addNewCategory} isOpen={isUserAddingCategory} setIsOpen={setIsUserAddingCategory} />}
-      <button onClick={() => setIsUserAddingCategory(true)}>
+      <button onClick={() => setIsUserAddingCategory(!isUserAddingCategory)}>
         <FontAwesomeIcon icon={['fas', 'plus']} />
       </button>
     </div>

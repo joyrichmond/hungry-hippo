@@ -33,17 +33,12 @@
   width: 10rem;
 }
 
-button {
-  background-color: $primary;
-  color: white;
-  text-transform: uppercase;
-  box-shadow: $button-shadow;
-  border: none;
-  margin: 0.5rem;
-  padding: 0.5rem;
+input {
   font-family: $primary-font;
-  border-radius: 5px;
+  font-size: 0.8rem;
+  padding: 0.5rem;
 }
+
 .fill-button {
   padding: 0 2rem;
   background-color: $primary;
