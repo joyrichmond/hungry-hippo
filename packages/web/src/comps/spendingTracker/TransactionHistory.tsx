@@ -54,12 +54,12 @@ const TransactionHistory: FC<Props> = ({ transactions, budgets, category, month 
         </div>
         <button onClick={e => setCanUserChangeBudget(!canUserChangeBudget)}>
           <span>(Budgeted Amount)</span>
-          <span className="importantAmount">${budgetedAmount || 'Please set a budget amount'}</span>
+          <span className={`${budgetedAmount ? 'importantAmount' : 'emptyAmount'}`}>$ {budgetedAmount || 'Please set a budget amount'}</span>
         </button>
         {canUserChangeBudget && (
           <form className="submitChangeBudget" onSubmit={e => submitChangeBudget(e)}>
             <label>new budget</label>
-            <input onChange={e => setAmount(Number(e.target.value))} value={amount} placeholder="Please set a budget amount" />
+            <input onChange={e => setAmount(Number(e.target.value))} value={amount} placeholder="Please set a budget amount" autoFocus />
             <button type="submit">
               <FontAwesomeIcon icon={['fas', 'arrow-right']} />
             </button>
