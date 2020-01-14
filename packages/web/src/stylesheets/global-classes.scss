@@ -11,10 +11,13 @@
 }
 
 .flex-centered-v {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .flex-centered-h {
+  display: flex;
   justify-content: center;
 }
 

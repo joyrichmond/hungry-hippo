@@ -18,7 +18,6 @@ function App() {
     <div className="App">
       <ToastContainer pauseOnFocusLoss />
       <div className="overlay" />
-      <Header />
       {auth ? <MainPanel /> : <Gateway />}
     </div>
   );

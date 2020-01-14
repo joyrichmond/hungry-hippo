@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useBudgets, useCategories, useTransactions } from '../hooks/useCollection';
 import { AppState } from '../store/root';
 import DashboardView from './DashboardView';
+import Header from './Header';
 import MasterSidebar from './MasterSidebar';
 import SpendingTracker from './SpendingTracker';
 
@@ -17,6 +18,7 @@ const MainPanel: FC = () => {
 
   return (
     <>
+      <Header />
       <div className="masterSidebar">
         <MasterSidebar />
       </div>
