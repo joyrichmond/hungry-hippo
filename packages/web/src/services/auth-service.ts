@@ -30,9 +30,7 @@ export const loginWithToken = async () => {
   }
 
   return request('login')
-    .then(item => {
-      dispatch({ type: 'SET_AUTH', item });
-    })
+    .then(item => dispatch({ type: 'SET_AUTH', item }))
     .catch(() => null);
 };
 
