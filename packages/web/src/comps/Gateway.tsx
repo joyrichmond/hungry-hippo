@@ -7,7 +7,7 @@ const Gateway: FC = () => {
   return (
     <div className="flex-centered-v">
       <div className="welcome">
-        <img src="/greenHippo.png" />
+        <img src="/greenHippo.png" alt="hippo-logo" />
         <h1>Welcome to Hungry Hippo!</h1>
         <p>An easy tool to track your spending</p>
       </div>

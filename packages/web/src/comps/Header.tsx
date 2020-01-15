@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,7 +27,7 @@ const Header: FC<Props> = ({ dispatch, auth }) => {
 
   return (
     <div className="header flex-h flex-space-between">
-      <img src="/hungryHippoLogo.png" className="logo" />
+      <img src="/hungryHippoLogo.png" className="logo" alt="hippo-logo" />
       <div className="datePicker">
         <DatePicker selected={startDate} onChange={date => updateMonth(date!)} dateFormat="MMMM yyyy" customInput={<DatePickerCustomInput />} showMonthYearPicker />
       </div>

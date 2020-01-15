@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 
-import SingleEntrySummaryInput from './utils/SingleEntrySummaryInput';
 import SummaryCard from './utils/SummaryCard';
 
 const MasterSidebar: FC = () => {

@@ -6,8 +6,6 @@ import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
 import Gateway from './comps/Gateway';
-import Header from './comps/Header';
-import Login from './comps/Login';
 import MainPanel from './comps/MainPanel';
 import { AppState } from './store/root';
 

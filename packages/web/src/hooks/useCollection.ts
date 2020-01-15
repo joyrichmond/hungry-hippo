@@ -24,7 +24,7 @@ const useCollection = <T>(type: string, selectorFn: (state: AppState) => { [key:
     fetchFn()
       .then(res => dispatch({ type, collection: res }))
       .finally(() => setIsFetching(false));
-  }, [collection, dispatch, fetchFn, type]);
+  }, [collection, dispatch, fetchFn, type, isFetching]);
 
   return collection;
 };

@@ -4,15 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Category from '../models/Category';
 import { request } from '../services/api-service';
-import { addBudget, calculateRemainingBudget, getActiveBudget } from '../services/budget-service';
+import { calculateRemainingBudget } from '../services/budget-service';
 import { filterTransactions } from '../services/transactions-service';
 import { BudgetsState } from '../store/budgets';
 import { CategoriesState } from '../store/categories';
-import { AppState } from '../store/root';
 import { SelectedMonthState } from '../store/selectedMonth';
 import { TransactionsState } from '../store/transactions';
 import AddNewCategory from './spendingTracker/AddNewCategory';
-import AddButton from './utils/AddButton';
 import LoadingView from './utils/LoadingView';
 
 type Props = {
@@ -33,14 +31,6 @@ const SpendingTracker: FC<Props> = ({ categories, budgets, transactions, dispatc
       method: 'POST',
       body: { name: categoryName },
     }).then(item => dispatch({ type: 'ADD_CATEGORY', item }));
-
-  const setBudget = (amount: number, categoryId: string) => {
-    addBudget({
-      effectiveDate: selectedMonth.monthStart,
-      amount: amount,
-      categoryId: categoryId,
-    }).then(item => dispatch({ type: 'SET_BUDGET', item }));
-  };
 
   const setSelectedCategory = (category: Category) => {
     const item = selectedCategory && selectedCategory._id === category._id ? null : category;

@@ -1,12 +1,10 @@
 import { format } from 'date-fns';
 import React, { FC, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Category from '../../models/Category';
 import Transaction from '../../models/Transaction';
-import { AppState } from '../../store/root';
 
 type Props = {
   //setCanUserRecordTransaction: any;
