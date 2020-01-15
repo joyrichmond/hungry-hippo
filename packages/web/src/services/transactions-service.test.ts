@@ -1,12 +1,10 @@
 import { mockCategories } from '../mock-data/mockCategories';
-import { mockTransactionsState } from '../mock-data/mockTransactions';
-import { filterTransactions } from './transactions-service';
+import { mockTransactions, mockTransactionsState } from '../mock-data/mockTransactions';
+import { filterTransactions, getTotalSpent } from './transactions-service';
 
 test('returns existing transactions that match requested category and date range', () => {
-  const mockFilteredTransactions = filterTransactions(
-    mockTransactionsState(),
-    Object.values(mockCategories)[0],
-  );
+  const mockSelectedMonth = { monthStart: new Date('12/1/2019'), monthEnd: new Date('12/31/2019') };
+  const mockFilteredTransactions = filterTransactions(mockTransactionsState(), mockSelectedMonth, Object.values(mockCategories)[0]);
 
   expect(mockFilteredTransactions).toEqual([
     {
@@ -24,4 +22,8 @@ test('returns existing transactions that match requested category and date range
       categoryId: 'TEST_CATEGORY1',
     },
   ]);
+});
+
+test('sums amount in transaction history', () => {
+  expect(getTotalSpent(mockTransactions)).toBe(264);
 });
