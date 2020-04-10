@@ -15,6 +15,7 @@ import putBudget from './handlers/putBudget';
 import signup from './handlers/signup';
 import authenticateToken from './middleware/authenticateToken';
 import { connect } from './services/mongoService';
+import cors from 'cors';
 
 config();
 
@@ -30,6 +31,7 @@ const main = async () => {
   await connect();
 
   const app = express();
+  app.use(cors());
   app.use(bodyParser.json());
 
   const router = Router();
